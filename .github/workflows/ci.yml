@@ -16,13 +16,12 @@ jobs:
         with:
           node-version: '22'
       # npm link の準備
-      - name: npm link linked-repo
+      - name: npm link
         run: |
           cd packages/scratch-vm
           npm install --frozen-lockfile
           npm link
           cd ../pmt-gui
           npm link scratch-vm
-          cd ../..
       - name: Build
         run: npm run build
