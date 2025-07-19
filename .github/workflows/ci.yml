@@ -17,11 +17,10 @@ jobs:
           node-version: '22'
       - name: npm install
         run: npm install --frozen-lockfile
-      - name: npm link
+      - name: npm link & build
         run: |
           cd packages/scratch-vm
           npm link
           cd ../pmt-gui
           npm link scratch-vm
-      - name: Build
-        run: npm run build
+          npm run build
