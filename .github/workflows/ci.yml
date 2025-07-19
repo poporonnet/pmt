@@ -15,11 +15,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      # npm link の準備
+      - name: npm install
+        run: npm install --frozen-lockfile
       - name: npm link
         run: |
           cd packages/scratch-vm
-          npm install --frozen-lockfile
           npm link
           cd ../pmt-gui
           npm link scratch-vm
