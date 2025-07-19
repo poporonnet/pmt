@@ -1,0 +1,32 @@
+# NPM
+node_modules
+npm-*
+
+# Testing
+/.nyc_output
+/coverage
+
+# Editor
+/.idea
+/.vscode
+
+# Build
+/dist
+/playground
+/benchmark
+/build
+/.opt-in
+# Localization
+/translations
+/locale
+
+# Mac OS
+.DS_Store
+
+# Other generated source
+/src/generated
+
+# Downloaded during "npm install"
+/static/microbit
+
+/tmp
