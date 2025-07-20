@@ -27,7 +27,7 @@ jobs:
         run: |
           cd scratch-vm
           npm run lint
-          npm run link
+          npm link
           cd ..
       - name: lint pmt-gui
         run: |
