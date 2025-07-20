@@ -3,7 +3,7 @@ node_modules
 npm-*
 
 # Testing
-/.nyc_output
+.nyc_output
 /coverage
 
 # Editor
@@ -30,3 +30,4 @@ build
 /static/microbit
 
 /tmp
+

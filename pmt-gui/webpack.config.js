@@ -1,7 +1,6 @@
 const defaultsDeep = require('lodash.defaultsdeep');
 const path = require('path');
 const webpack = require('webpack');
-const fs = require('fs');
 
 // Plugins
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -173,36 +172,31 @@ module.exports = [
             new HtmlWebpackPlugin({
                 chunks: ['lib.min', 'gui'],
                 template: 'src/playground/index.ejs',
-                title: 'Smalruby',
-                originTrials: JSON.parse(fs.readFileSync('origin-trials.json'))
+                title: 'Smalruby'
             }),
             new HtmlWebpackPlugin({
                 chunks: ['lib.min', 'gui'],
                 template: 'src/playground/index.ejs',
                 filename: 'ja.html',
-                title: 'スモウルビー',
-                originTrials: JSON.parse(fs.readFileSync('origin-trials.json'))
+                title: 'スモウルビー'
             }),
             new HtmlWebpackPlugin({
                 chunks: ['lib.min', 'blocksonly'],
                 template: 'src/playground/index.ejs',
                 filename: 'blocks-only.html',
-                title: 'Smalruby 3.0 GUI: Blocks Only Example',
-                originTrials: JSON.parse(fs.readFileSync('origin-trials.json'))
+                title: 'Smalruby 3.0 GUI: Blocks Only Example'
             }),
             new HtmlWebpackPlugin({
                 chunks: ['lib.min', 'compatibilitytesting'],
                 template: 'src/playground/index.ejs',
                 filename: 'compatibility-testing.html',
-                title: 'Smalruby 3.0 GUI: Compatibility Testing',
-                originTrials: JSON.parse(fs.readFileSync('origin-trials.json'))
+                title: 'Smalruby 3.0 GUI: Compatibility Testing'
             }),
             new HtmlWebpackPlugin({
                 chunks: ['lib.min', 'player'],
                 template: 'src/playground/index.ejs',
                 filename: 'player.html',
-                title: 'Smalruby 3.0 GUI: Player Example',
-                originTrials: JSON.parse(fs.readFileSync('origin-trials.json'))
+                title: 'Smalruby 3.0 GUI: Player Example'
             }),
             new CopyWebpackPlugin({
                 patterns: [
