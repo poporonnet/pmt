@@ -1,26 +1,61 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
 
 jobs:
-  build:
+  install:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Set up Node.js 22
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
-      - name: npm link & build
+          node-version: "22"
+      - name: Install dependencies
         run: |
-          cd scratch-vm
+          cd pmt-gui
           npm install --frozen-lockfile
           npm link
-          cd ../pmt-gui
+          cd scratch-vm
           npm install --frozen-lockfile
           npm link scratch-vm
-          npm run build
+          cd ..
+
+  build:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Build
+        run: npm run build
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: install
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Lint pmt-gui
+        run: |
+          cd pmt-gui
+          npm run lint
+      - name: Lint scratch-vm
+        run: |
+          cd scratch-vm
+          npm run lint
