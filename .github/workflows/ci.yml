@@ -19,7 +19,7 @@ jobs:
         run: npm install --frozen-lockfile
       - name: npm link & build
         run: |
-          cd packages/scratch-vm
+          cd scratch-vm
           npm link
           cd ../pmt-gui
           npm link scratch-vm
