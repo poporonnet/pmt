@@ -1,0 +1,102 @@
+[
+  {
+    "id": "gui.kanirobo1v2.name",
+    "description": "Name for the 'Kanirobo1v2' extension",
+    "defaultMessage": "Kanirobo1v2"
+  },
+  {
+    "id": "gui.kanirobo1v2.description",
+    "description": "Description for the 'Kanirobo1v2' extension",
+    "defaultMessage": "Kanirobo Blocks (Easy)"
+  },
+  {
+    "id": "gui.kanirobo2.name",
+    "description": "Name for the 'Kanirobo2' extension",
+    "defaultMessage": "Kanirobo2"
+  },
+  {
+    "id": "gui.kanirobo2.description",
+    "description": "Description for the 'Kanirobo2' extension",
+    "defaultMessage": "Kanirobo Blocks (Normal)"
+  },
+  {
+    "id": "gui.tools.name",
+    "description": "Name for the 'Tools' extension",
+    "defaultMessage": "Tools"
+  },
+  {
+    "id": "gui.tools.description",
+    "description": "Description for the 'tools' extension",
+    "defaultMessage": "Tools (output, etc.)"
+  },
+  {
+    "id": "gui.mboard1.name",
+    "description": "Name for the 'Mboard1' extension",
+    "defaultMessage": "Mboard1"
+  },
+  {
+    "id": "gui.mboard1.description",
+    "description": "Description for the 'mboard1' extension",
+    "defaultMessage": "Matsue Board Blocks (Easy)"
+  },
+  {
+    "id": "gui.mboard2.name",
+    "description": "Name for the 'Mboard2' extension",
+    "defaultMessage": "Mboard2"
+  },
+  {
+    "id": "gui.mboard2.description",
+    "description": "Description for the 'mboard2' extension",
+    "defaultMessage": "Matsue Board Blocks (Normal)"
+  },
+  {
+    "id": "gui.mboard3.name",
+    "description": "Name for the 'Mboard3' extension",
+    "defaultMessage": "Mboard3"
+  },
+  {
+    "id": "gui.mboard3.description",
+    "description": "Description for the 'mboard3' extension",
+    "defaultMessage": "Matsue Board Blocks"
+  },
+  {
+    "id": "gui.microcom.name",
+    "description": "Name for the 'Micro_Computer' extension",
+    "defaultMessage": "Microcom"
+  },
+  {
+    "id": "gui.microcom.description",
+    "description": "Description for the 'Microcom' extension",
+    "defaultMessage": "Micro Computer Blocks"
+  },
+  {
+    "id": "gui.m5stack.name",
+    "description": "Name for the 'M5stack' extension",
+    "defaultMessage": "M5stack"
+  },
+  {
+    "id": "gui.m5stack.description",
+    "description": "Description for the 'M5stack' extension",
+    "defaultMessage": "M5stack Blocks"
+  },
+  {
+    "id": "gui.sensor.name",
+    "description": "Name for the 'Sensor' extension",
+    "defaultMessage": "Sensor"
+  },
+  {
+    "id": "gui.sensor.description",
+    "description": "Description for the 'sensor' extension",
+    "defaultMessage": "Sensor (peripherals)"
+  },
+  {
+    "id": "gui.rboard.name",
+    "description": "Name for the 'RBoard' extension",
+    "defaultMessage": "RBoard"
+  },
+  {
+    "id": "gui.rboard.description",
+    "description": "Description for the 'RBoard' extension",
+    "defaultMessage": "RBoard Blocks"
+  }
+]
