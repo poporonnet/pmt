@@ -15,68 +15,27 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '22'
-      - run: |
-          cd pmt-gui
-          npm install --frozen-lockfile
+          node-version: "22"
+      - name: Install dependencies
+        run: |
           cd ../scratch-vm
+          npm install --frozen-lockfile
+          cd ../pmt-gui
           npm install --frozen-lockfile
           cd ..
-      - name: Upload pmt-gui node_modules
-        uses: actions/upload-artifact@v4
-        with:
-          name: pmt-gui-node-modules
-          path: pmt-gui/node_modules
-      - name: Upload scratch-vm node_modules
-        uses: actions/upload-artifact@v4
-        with:
-          name: scratch-vm-node-modules
-          path: scratch-vm/node_modules
-
-  build:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Download pmt-gui node_modules
-        uses: actions/download-artifact@v4
-        with:
-          name: pmt-gui-node-modules
-          path: pmt-gui/node_modules
-      - name: Download scratch-vm node_modules
-        uses: actions/download-artifact@v4
-        with:
-          name: scratch-vm-node-modules
-          path: scratch-vm/node_modules
-      - run: |
+      - name: lint scratch-vm
+        run: |
+          cd scratch-vm
+          npm run lint
+          npm run link
+          cd ..
+      - name: lint pmt-gui
+        run: |
+          cd pmt-gui
+          npm run test:lint
+          npm link scratch-vm
+          cd ..
+      - name: build pmt-gui
+        run: |
           cd pmt-gui
           npm run build
-          cd ../scratch-vm
-          npm run build
-
-  lint:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Download pmt-gui node_modules
-        uses: actions/download-artifact@v4
-        with:
-          name: pmt-gui-node-modules
-          path: pmt-gui/node_modules
-      - name: Download scratch-vm node_modules
-        uses: actions/download-artifact@v4
-        with:
-          name: scratch-vm-node-modules
-          path: scratch-vm/node_modules
-      - run: |
-          cd pmt-gui
-          npm run lint
-          cd ../scratch-vm
-          npm run lint
