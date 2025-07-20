@@ -16,12 +16,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - name: Install dependencies
+      - name: Install dependencies scratch-vm
         run: |
-          cd pmt-gui
+          cd scratch-vm
           npm install --frozen-lockfile
           npm link
-          cd scratch-vm
+      - name: Install dependencies pmt-gui
+        run: |
+          cd pmt-gui
           npm install --frozen-lockfile
           npm link scratch-vm
           cd ..
