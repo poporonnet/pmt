@@ -18,7 +18,7 @@ jobs:
           node-version: "22"
       - name: Install dependencies
         run: |
-          cd ../scratch-vm
+          cd scratch-vm
           npm install --frozen-lockfile
           cd ../pmt-gui
           npm install --frozen-lockfile
