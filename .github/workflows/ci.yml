@@ -2,65 +2,81 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
   pull_request:
 
 jobs:
   install:
     runs-on: ubuntu-latest
+    outputs:
+      pmt-gui-artifact: pmt-gui-node-modules
+      scratch-vm-artifact: scratch-vm-node-modules
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-      - name: Install dependencies scratch-vm
-        run: |
-          cd scratch-vm
-          npm install --frozen-lockfile
-          npm link
-      - name: Install dependencies pmt-gui
-        run: |
+          node-version: '22'
+      - run: |
           cd pmt-gui
           npm install --frozen-lockfile
-          npm link scratch-vm
+          cd ../scratch-vm
+          npm install --frozen-lockfile
           cd ..
+      - name: Upload pmt-gui node_modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: pmt-gui-node-modules
+          path: pmt-gui/node_modules
+      - name: Upload scratch-vm node_modules
+        uses: actions/upload-artifact@v4
+        with:
+          name: scratch-vm-node-modules
+          path: scratch-vm/node_modules
 
   build:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-
-      - name: Build
-        run: |
+          node-version: '22'
+      - name: Download pmt-gui node_modules
+        uses: actions/download-artifact@v4
+        with:
+          name: pmt-gui-node-modules
+          path: pmt-gui/node_modules
+      - name: Download scratch-vm node_modules
+        uses: actions/download-artifact@v4
+        with:
+          name: scratch-vm-node-modules
+          path: scratch-vm/node_modules
+      - run: |
           cd pmt-gui
+          npm run build
+          cd ../scratch-vm
           npm run build
 
   lint:
     runs-on: ubuntu-latest
     needs: install
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-      - name: Lint pmt-gui
-        run: |
+          node-version: '22'
+      - name: Download pmt-gui node_modules
+        uses: actions/download-artifact@v4
+        with:
+          name: pmt-gui-node-modules
+          path: pmt-gui/node_modules
+      - name: Download scratch-vm node_modules
+        uses: actions/download-artifact@v4
+        with:
+          name: scratch-vm-node-modules
+          path: scratch-vm/node_modules
+      - run: |
           cd pmt-gui
           npm run lint
-          cd ..
-      - name: Lint scratch-vm
-        run: |
-          cd scratch-vm
+          cd ../scratch-vm
           npm run lint
