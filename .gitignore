@@ -11,10 +11,10 @@ npm-*
 /.vscode
 
 # Build
-/dist
-/playground
-/benchmark
-/build
+playgrounddist
+playgroundplayground
+benchmark
+build
 /.opt-in
 # Localization
 /translations
