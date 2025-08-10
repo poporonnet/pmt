@@ -53,4 +53,4 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             TARGET="${{ github.event_name == 'pull_request' && format('PR-{0}', github.event.number) || github.ref_name }}"
-            /home/pmt/scripts/deploy.sh "$TARGET"
+            /home/deploy/scripts/deploy.sh "$TARGET"
