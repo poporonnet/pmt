@@ -44,7 +44,7 @@ jobs:
           tar -czf ${{ github.sha }}.tar.gz -C pmt-gui/dist .
       - name: Copy artifact to server
         run: |
-          scp -p ${{ secrets.VPS_PORT }} -i ~/.ssh/id_rsa ${{ github.sha }}.tar.gz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/tmp/${{ github.head_ref || github.ref_name }}.tar.gz
+          scp -P ${{ secrets.VPS_PORT }} -i ~/.ssh/id_rsa ${{ github.sha }}.tar.gz ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:/tmp/${{ github.head_ref || github.ref_name }}.tar.gz
       - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.2.2
         with:
