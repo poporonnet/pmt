@@ -1,41 +1,99 @@
-name: CI
+name: CI Pages
 
 on:
   push:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
 jobs:
-  install:
+  build:
     runs-on: ubuntu-latest
-    outputs:
-      pmt-gui-artifact: pmt-gui-node-modules
-      scratch-vm-artifact: scratch-vm-node-modules
+    env:
+      NODE_ENV: development
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
-          node-version: "22"
-      - name: Install dependencies
-        run: |
-          cd scratch-vm
-          npm install --frozen-lockfile
-          cd ../pmt-gui
-          npm install --frozen-lockfile
-          cd ..
-      - name: lint scratch-vm
-        run: |
-          cd scratch-vm
-          npm run lint
-          npm link
-          cd ..
-      - name: lint pmt-gui
-        run: |
-          cd pmt-gui
-          npm run test:lint
-          npm link scratch-vm
-          cd ..
-      - name: build pmt-gui
-        run: |
-          cd pmt-gui
-          npm run build
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: |
+            scratch-vm/package-lock.json
+            pmt-gui/package-lock.json
+
+      - name: Install scratch-vm dependencies
+        working-directory: scratch-vm
+        run: npm install
+
+      - name: Lint scratch-vm
+        working-directory: scratch-vm
+        run: npm run lint
+
+      - name: Link scratch-vm
+        working-directory: scratch-vm
+        run: npm link
+
+      - name: Install pmt-gui dependencies
+        working-directory: pmt-gui
+        run: npm install
+
+      - name: Lint pmt-gui
+        working-directory: pmt-gui
+        run: npm run test:lint
+
+      - name: Link scratch-vm into pmt-gui
+        working-directory: pmt-gui
+        run: npm link scratch-vm
+
+      - name: Build pmt-gui
+        working-directory: pmt-gui
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact (pmt-gui/build)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: pmt-gui/build
+
+  deploy:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  deploy-preview:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+      - name: Deploy Pages (preview)
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          preview: true
