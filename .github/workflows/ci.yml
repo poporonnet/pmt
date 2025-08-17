@@ -31,7 +31,7 @@ jobs:
 
       - name: Install scratch-vm dependencies
         working-directory: scratch-vm
-        run: npm ci
+        run: npm install
 
       - name: Lint scratch-vm
         working-directory: scratch-vm
@@ -46,7 +46,7 @@ jobs:
 
       - name: Install pmt-gui dependencies
         working-directory: pmt-gui
-        run: npm ci
+        run: npm install
 
       - name: Lint pmt-gui
         working-directory: pmt-gui
@@ -86,3 +86,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
