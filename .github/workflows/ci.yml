@@ -7,51 +7,66 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     env:
       NODE_ENV: production
+      CI: true
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - name: Install dependencies
+          cache: "npm"
+          cache-dependency-path: |
+            scratch-vm/package-lock.json
+            pmt-gui/package-lock.json
+
+      - name: Install scratch-vm dependencies
+        working-directory: scratch-vm
+        run: npm ci
+
+      - name: Lint scratch-vm
+        working-directory: scratch-vm
+        run: npm run lint
+
+      - name: Pack scratch-vm
+        id: pack
+        working-directory: scratch-vm
         run: |
-          cd scratch-vm
-          npm install --frozen-lockfile
-          cd ../pmt-gui
-          npm install --frozen-lockfile
-          cd ..
-      - name: lint scratch-vm
-        run: |
-          cd scratch-vm
-          npm run lint
-          npm link
-          cd ..
-      - name: lint pmt-gui
-        run: |
-          cd pmt-gui
-          npm run test:lint
-          npm link scratch-vm
-          cd ..
-      - name: build pmt-gui
-        run: |
-          cd pmt-gui
-          npm run build
+          TARBALL="$(npm pack)"
+          echo "tarball=${TARBALL}" >> "$GITHUB_OUTPUT"
+
+      - name: Install pmt-gui dependencies
+        working-directory: pmt-gui
+        run: npm ci
+
+      - name: Lint pmt-gui
+        working-directory: pmt-gui
+        run: npm run test:lint
+
+      - name: Install local scratch-vm tarball into pmt-gui
+        working-directory: pmt-gui
+        run: npm i -D ../scratch-vm/${{ steps.pack.outputs.tarball }}
+
+      - name: Build pmt-gui
+        working-directory: pmt-gui
+        run: npm run build
+
       - name: Add .nojekyll
         run: |
           touch pmt-gui/build/.nojekyll
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
       - name: Upload GitHub Pages artifact (pmt-gui/build)
         uses: actions/upload-pages-artifact@v3
         with:
@@ -61,6 +76,12 @@ jobs:
     if: github.event_name == 'push'
     needs: build
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
