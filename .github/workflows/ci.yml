@@ -36,12 +36,9 @@ jobs:
         working-directory: scratch-vm
         run: npm run lint
 
-      - name: Pack scratch-vm
-        id: pack
+      - name: Link scratch-vm
         working-directory: scratch-vm
-        run: |
-          TARBALL="$(npm pack)"
-          echo "tarball=${TARBALL}" >> "$GITHUB_OUTPUT"
+        run: npm link
 
       - name: Install pmt-gui dependencies
         working-directory: pmt-gui
@@ -51,17 +48,13 @@ jobs:
         working-directory: pmt-gui
         run: npm run test:lint
 
-      - name: Install local scratch-vm tarball into pmt-gui
+      - name: Link scratch-vm into pmt-gui
         working-directory: pmt-gui
-        run: npm i -D ../scratch-vm/${{ steps.pack.outputs.tarball }}
+        run: npm link scratch-vm
 
       - name: Build pmt-gui
         working-directory: pmt-gui
         run: npm run build
-
-      - name: Add .nojekyll
-        run: |
-          touch pmt-gui/build/.nojekyll
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
