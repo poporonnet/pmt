@@ -1,0 +1,6 @@
+{
+  "puts": {
+    "snippet": "puts(${1:test})",
+    "description": "デバッグログを表示"
+  }
+}
