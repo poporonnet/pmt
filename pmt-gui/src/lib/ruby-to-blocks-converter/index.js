@@ -32,6 +32,7 @@ import MyBlocksConverter from './my-blocks';
 // import MakeyMakeyConverter from './makeymakey';
 // import VideoConverter from './video';
 // import Text2SpeechConverter from './text2speech';
+import ToolsConverter from './tools.js';
 
 const messages = defineMessages({
     couldNotConvertPremitive: {
@@ -83,22 +84,23 @@ class RubyToBlocksConverter {
         this.vm = vm;
         this._translator = message => message.defaultMessage;
         this._converters = [
-        // MusicConverter,
-        // PenConverter,
-        // EV3Converter,
-        // GdxForConverter,
-        // SmalrubotS1Converter,
-        // BoostConverter,
-        // TranslateConverter,
-        // MakeyMakeyConverter,
-        // MotionConverter,
-        // LooksConverter,
-        // SoundConverter,
+            // MusicConverter,
+            // PenConverter,
+            // EV3Converter,
+            // GdxForConverter,
+            // SmalrubotS1Converter,
+            // BoostConverter,
+            // TranslateConverter,
+            // MakeyMakeyConverter,
+            // MotionConverter,
+            // LooksConverter,
+            // SoundConverter,
             ControlConverter,
             // SensingConverter,
             OperatorsConverter,
             VariablesConverter,
-            MyBlocksConverter
+            MyBlocksConverter,
+            ToolsConverter
         ];
         this._receiverToMethods = {};
         this.reset();
