@@ -4,6 +4,7 @@ import ControlSnippets from './control-snippets.json';
 import OperatorsSnippets from './operators-snippets.json';
 import VariablesSnippets from './variables-snippets.json';
 import ProcedureSnippets from './procedure-snippets.json';
+import ToolsSnippets from './tools-snippets.json';
 
 class SnippetsCompleter extends BaseCompleter {
     #completions = [];
@@ -15,7 +16,8 @@ class SnippetsCompleter extends BaseCompleter {
             ControlSnippets,
             OperatorsSnippets,
             VariablesSnippets,
-            ProcedureSnippets
+            ProcedureSnippets,
+            ToolsSnippets
         ];
         snippetsList.forEach(snippets => {
             for (const [caption, item] of Object.entries(snippets)) {
