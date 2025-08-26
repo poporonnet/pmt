@@ -9,7 +9,7 @@ import ToolsSnippets from './tools-snippets.json';
 class SnippetsCompleter extends BaseCompleter {
     #completions = [];
 
-    constructor() {
+    constructor () {
         super();
 
         const snippetsList = [
@@ -28,7 +28,7 @@ class SnippetsCompleter extends BaseCompleter {
         });
     }
 
-    getCompletions(editor, session, pos, prefix, callback) {
+    getCompletions (editor, session, pos, prefix, callback) {
         callback(null, this.#completions);
     }
 }
