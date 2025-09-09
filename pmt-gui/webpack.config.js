@@ -34,11 +34,12 @@ const base = {
         chunkFilename: 'chunks/[name].js'
     },
     resolve: {
-        symlinks: false
+        symlinks: false,
+        extensions: ['.js', '.jsx', '.ts', '.tsx', '.json']
     },
     module: {
         rules: [{
-            test: /\.jsx?$/,
+            test: /\.(j|t)sx?$/,
             loader: 'babel-loader',
             include: [
                 path.resolve(__dirname, 'src'),
@@ -57,7 +58,7 @@ const base = {
                     ['react-intl', {
                         messagesDir: './translations/messages/'
                     }]],
-                presets: ['@babel/preset-env', '@babel/preset-react']
+                presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript']
             }
         },
         {
