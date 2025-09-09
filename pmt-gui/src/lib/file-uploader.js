@@ -1,5 +1,5 @@
 import {BitmapAdapter, sanitizeSvg} from 'scratch-svg-renderer';
-import randomizeSpritePosition from './randomize-sprite-position.js';
+import randomizeSpritePosition from './randomize-sprite-position';
 import bmpConverter from './bmp-converter';
 import gifDecoder from './gif-decoder';
 
