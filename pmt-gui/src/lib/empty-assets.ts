@@ -8,7 +8,7 @@
  * @param {string} name the name to use for the costume, caller should localize
  * @return {object} vm costume object
  */
-const emptyCostume = name => ({
+const emptyCostume = (name: string) => ({
     name: name,
     md5: 'cd21514d0531fdffb22204e0ec5ed84a.svg',
     rotationCenterX: 0,
@@ -25,7 +25,7 @@ const emptyCostume = name => ({
  * @param {string} costumeName the name to use for the default costume
  * @return {object} object expected by vm.addSprite
  */
-const emptySprite = (name, soundName, costumeName) => ({
+const emptySprite = (name: string, soundName: string, costumeName: string) => ({
     objName: name,
     sounds: [
         {

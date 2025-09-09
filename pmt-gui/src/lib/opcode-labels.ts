@@ -115,7 +115,11 @@ const messages = defineMessages({
     }
 });
 
+type Message = { defaultMessage: string };
+
 class OpcodeLabels {
+    private _translator: (message: any) => string;
+    private _opcodeMap: Record<string, any>;
     constructor () {
         /**
          * Translation function for labels. By default just return the defaultMessage
@@ -123,7 +127,7 @@ class OpcodeLabels {
          * @param {object} message A message object compatible with react-intl formatMessage
          * @return {string} Return the default string initially
          */
-        this._translator = message => message.defaultMessage;
+        this._translator = (message: Message) => message.defaultMessage;
 
         /**
          * Initial opcode map, with categories defined
@@ -166,7 +170,7 @@ class OpcodeLabels {
      * a message object as defined by react-intl defineMessages
      * @param {function} translator the function to use for localization
      */
-    setTranslatorFunction (translator) {
+    setTranslatorFunction (translator: (message: any) => string) {
         this._translator = translator;
         this._refreshOpcodeMap();
     }
@@ -183,13 +187,13 @@ class OpcodeLabels {
 
         // Looks
         this._opcodeMap.looks_size.labelFn = () => this._translator(messages.looks_size);
-        this._opcodeMap.looks_costumenumbername.labelFn = params => {
+        this._opcodeMap.looks_costumenumbername.labelFn = (params: any) => {
             if (params.NUMBER_NAME === 'number') {
                 return this._translator(messages.looks_costumenumber);
             }
             return this._translator(messages.looks_costumename);
         };
-        this._opcodeMap.looks_backdropnumbername.labelFn = params => {
+        this._opcodeMap.looks_backdropnumbername.labelFn = (params: any) => {
             if (params.NUMBER_NAME === 'number') {
                 return this._translator(messages.looks_backdropnumber);
             }
@@ -198,8 +202,8 @@ class OpcodeLabels {
         this._opcodeMap.looks_backdropname.labelFn = () => this._translator(messages.looks_backdropname);
 
         // Data
-        this._opcodeMap.data_variable.labelFn = params => params.VARIABLE;
-        this._opcodeMap.data_listcontents.labelFn = params => params.LIST;
+        this._opcodeMap.data_variable.labelFn = (params: any) => params.VARIABLE;
+        this._opcodeMap.data_listcontents.labelFn = (params: any) => params.LIST;
 
         // Sound
         this._opcodeMap.sound_volume.labelFn = () => this._translator(messages.sound_volume);
@@ -209,7 +213,7 @@ class OpcodeLabels {
         this._opcodeMap.sensing_answer.labelFn = () => this._translator(messages.sensing_answer);
         this._opcodeMap.sensing_loudness.labelFn = () => this._translator(messages.sensing_loudness);
         this._opcodeMap.sensing_username.labelFn = () => this._translator(messages.sensing_username);
-        this._opcodeMap.sensing_current.labelFn = params => {
+        this._opcodeMap.sensing_current.labelFn = (params: any) => {
             switch (params.CURRENTMENU.toLowerCase()) {
             case 'year':
                 return this._translator(messages.sensing_current_year);
@@ -235,7 +239,7 @@ class OpcodeLabels {
      * @param {string} opcode the opcode you want a label for
      * @return {object} object with  label and category
      */
-    getLabel (opcode) {
+    getLabel (opcode: string) {
         if (opcode in this._opcodeMap) return this._opcodeMap[opcode];
         return {
             category: 'extension',

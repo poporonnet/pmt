@@ -23,7 +23,7 @@ const wideLocales = [
  * @return {bool} true if translations in this language are too long
  */
 
-const isWideLocale = locale => (
+const isWideLocale = (locale: string): boolean => (
     wideLocales.indexOf(locale) !== -1
 );
 
