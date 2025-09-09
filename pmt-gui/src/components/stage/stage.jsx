@@ -11,7 +11,7 @@ import GreenFlagOverlay from '../../containers/green-flag-overlay.jsx';
 import Question from '../../containers/question.jsx';
 import MicIndicator from '../mic-indicator/mic-indicator.jsx';
 import {STAGE_DISPLAY_SIZES} from '../../lib/layout-constants.js';
-import {getStageDimensions} from '../../lib/screen-utils.js';
+import {getStageDimensions} from '../../lib/screen-utils';
 import styles from './stage.css';
 
 const StageComponent = props => {
