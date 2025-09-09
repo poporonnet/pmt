@@ -3,7 +3,19 @@
  * @param {string} event - one of `projectWasCreated`, `projectDidLoad`, `projectDidSave`, `projectWasUploaded`
  */
 // TODO make a telemetry HOC and move this stuff there
-const collectMetadata = function (vm, projectName = '', locale = '') {
+type Metadata = {
+    projectName: string;
+    language: string;
+    spriteCount: number;
+    blocksCount: number;
+    costumesCount: number;
+    listsCount: number;
+    scriptCount: number;
+    soundsCount: number;
+    variablesCount: number;
+};
+
+const collectMetadata = function (vm: any, projectName = '', locale = ''): Metadata {
     // TODO move most or all of this into a collectMetadata() method on the VM/Runtime
     const metadata = {
         projectName: projectName,
@@ -17,7 +29,7 @@ const collectMetadata = function (vm, projectName = '', locale = '') {
         variablesCount: 0
     };
 
-    for (const target of vm.runtime.targets) {
+    for (const target of vm.runtime.targets as any[]) {
         ++metadata.spriteCount;
         metadata.blocksCount += Object.keys(target.sprite.blocks._blocks).length;
         metadata.costumesCount += target.sprite.costumes_.length;
