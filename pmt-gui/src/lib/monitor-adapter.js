@@ -1,4 +1,4 @@
-import OpcodeLabels from './opcode-labels.js';
+import OpcodeLabels from './opcode-labels';
 
 const isUndefined = a => typeof a === 'undefined';
 

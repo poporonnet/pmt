@@ -7,7 +7,7 @@ import VM from 'scratch-vm';
 import AssetPanel from '../components/asset-panel/asset-panel.jsx';
 import PaintEditorWrapper from './paint-editor-wrapper.jsx';
 import {connect} from 'react-redux';
-import {handleFileUpload, costumeUpload} from '../lib/file-uploader.js';
+import {handleFileUpload, costumeUpload} from '../lib/file-uploader';
 import errorBoundaryHOC from '../lib/error-boundary-hoc.jsx';
 import DragConstants from '../lib/drag-constants';
 import {emptyCostume} from '../lib/empty-assets';

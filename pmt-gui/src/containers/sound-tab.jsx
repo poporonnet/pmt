@@ -18,7 +18,7 @@ import SoundEditor from './sound-editor.jsx';
 import SoundLibrary from './sound-library.jsx';
 
 import soundLibraryContent from '../lib/libraries/sounds.json';
-import {handleFileUpload, soundUpload} from '../lib/file-uploader.js';
+import {handleFileUpload, soundUpload} from '../lib/file-uploader';
 import errorBoundaryHOC from '../lib/error-boundary-hoc.jsx';
 import DragConstants from '../lib/drag-constants';
 import downloadBlob from '../lib/download-blob';

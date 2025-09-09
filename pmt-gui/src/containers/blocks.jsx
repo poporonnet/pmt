@@ -7,7 +7,7 @@ import React from 'react';
 import VMScratchBlocks from '../lib/blocks';
 import VM from 'scratch-vm';
 
-import log from '../lib/log.js';
+import log from '../lib/log';
 import Prompt from './prompt.jsx';
 import BlocksComponent from '../components/blocks/blocks.jsx';
 import ExtensionLibrary from './extension-library.jsx';

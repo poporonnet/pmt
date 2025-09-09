@@ -11,7 +11,7 @@ import DirectionPicker from '../../containers/direction-picker.jsx';
 import {injectIntl, intlShape, defineMessages, FormattedMessage} from 'react-intl';
 
 import {STAGE_DISPLAY_SIZES} from '../../lib/layout-constants.js';
-import {isWideLocale} from '../../lib/locale-utils.js';
+import {isWideLocale} from '../../lib/locale-utils';
 
 import styles from './sprite-info.css';
 
