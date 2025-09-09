@@ -1,10 +1,11 @@
-export default (filename, blob) => {
+export default (filename: string, blob: Blob): void => {
     const downloadLink = document.createElement('a');
     document.body.appendChild(downloadLink);
 
     // Use special ms version if available to get it working on Edge.
-    if (navigator.msSaveOrOpenBlob) {
-        navigator.msSaveOrOpenBlob(blob, filename);
+    const navAny = navigator as Navigator & { msSaveOrOpenBlob?: (blob: Blob, fileName?: string) => boolean };
+    if (navAny.msSaveOrOpenBlob) {
+        navAny.msSaveOrOpenBlob(blob, filename);
         return;
     }
 
@@ -24,7 +25,9 @@ export default (filename, blob) => {
         let popup = window.open('', '_blank');
         const reader = new FileReader();
         reader.onloadend = function () {
-            popup.location.href = reader.result;
+            if (popup && typeof reader.result === 'string') {
+                popup.location.href = reader.result;
+            }
             popup = null;
         };
         reader.readAsDataURL(blob);

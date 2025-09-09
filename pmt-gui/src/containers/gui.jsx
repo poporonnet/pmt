@@ -40,7 +40,7 @@ import cloudManagerHOC from '../lib/cloud-manager-hoc.jsx';
 import systemPreferencesHOC from '../lib/system-preferences-hoc.jsx';
 
 import GUIComponent from '../components/gui/gui.jsx';
-import {setIsScratchDesktop} from '../lib/isScratchDesktop.js';
+import {setIsScratchDesktop} from '../lib/isScratchDesktop';
 
 class GUI extends React.Component {
     componentDidMount () {
