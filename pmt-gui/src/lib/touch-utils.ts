@@ -1,4 +1,6 @@
-const getEventXY = e => {
+type MouseOrTouchEvent = MouseEvent | TouchEvent | (MouseEvent & TouchEvent) | any;
+
+const getEventXY = (e: MouseOrTouchEvent): {x: number; y: number} => {
     if (e.touches && e.touches[0]) {
         return {x: e.touches[0].clientX, y: e.touches[0].clientY};
     } else if (e.changedTouches && e.changedTouches[0]) {

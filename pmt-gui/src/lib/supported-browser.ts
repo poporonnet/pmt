@@ -11,7 +11,7 @@ const minVersions = {
  * Helper function to determine if the browser is supported at all.
  * @returns {boolean} False if the platform is definitely not supported.
  */
-const supportedBrowser = () => {
+const supportedBrowser = (): boolean => {
     if (bowser.msie) {
         return false;
     }
@@ -26,7 +26,7 @@ const supportedBrowser = () => {
  *   always returns false
  */
 
-const recommendedBrowser = () =>
+const recommendedBrowser = (): boolean =>
     !bowser.isUnsupportedBrowser(minVersions, true) ||
     window.navigator.userAgent.toLowerCase().indexOf('googlebot') !== -1;
 
