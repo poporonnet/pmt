@@ -1,7 +1,7 @@
 // eslint-disable-next-line import/no-unresolved
 import soundThumbnail from '!base64-loader!./sound-thumbnail.jpg';
 
-const soundPayload = sound => {
+const soundPayload = (sound: any) => {
     const assetDataUrl = sound.asset.encodeDataURI();
     const assetDataFormat = sound.dataFormat;
     const payload = {

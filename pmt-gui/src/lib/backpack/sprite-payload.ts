@@ -1,13 +1,13 @@
 import jpegThumbnail from './jpeg-thumbnail';
 
-const spritePayload = (id, vm) => {
+const spritePayload = (id: string, vm: any) => {
     const target = vm.runtime.getTargetById(id);
     if (!target) return null;
 
     return vm.exportSprite(
         id,
         'base64'
-    ).then(zippedSprite => {
+    ).then((zippedSprite: string) => {
         const payload = {
             type: 'sprite',
             name: target.sprite.name,

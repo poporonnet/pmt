@@ -1,8 +1,8 @@
-export default bmpImage => new Promise(resolve => {
+export default (bmpImage: ArrayBuffer | string) => new Promise<string>(resolve => {
     // If the input is an ArrayBuffer, we need to convert it to a `Blob` and give it a URL so we can use it as an <img>
     // `src`. If it's a data URI, we can use it as-is.
-    const imageUrl = bmpImage instanceof String ?
-        bmpImage :
+    const imageUrl = typeof bmpImage === 'string' ?
+        bmpImage as string :
         window.URL.createObjectURL(new Blob([bmpImage], {type: 'image/bmp'}));
     
     const canvas = document.createElement('canvas');

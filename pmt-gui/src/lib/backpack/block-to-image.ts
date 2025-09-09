@@ -6,14 +6,14 @@ import ScratchBlocks from 'scratch-blocks';
  * @param {string} blockId the ID of the block to imagify
  * @return {Promise} resolves to a data-url of a picture of the blocks
  */
-export default function (blockId) {
+export default function (blockId: string): Promise<string> {
     // Not sure any better way to access the scratch-blocks workspace than this...
     const block = ScratchBlocks.getMainWorkspace().getBlockById(blockId);
     const blockSvg = block.getSvgRoot().cloneNode(true /* deep */);
 
     // Once we have the cloned SVG, do the rest in a setTimeout to prevent
     // blocking the drag end from finishing promptly.
-    return new Promise(resolve => {
+    return new Promise<string>(resolve => {
         setTimeout(() => {
             // Strip &nbsp; entities that cannot be inlined
             blockSvg.innerHTML = blockSvg.innerHTML.replace(/&nbsp;/g, ' ');

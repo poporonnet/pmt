@@ -2,8 +2,8 @@ import blockToImage from './block-to-image';
 import jpegThumbnail from './jpeg-thumbnail';
 import {Base64} from 'js-base64';
 
-const codePayload = ({blockObjects, topBlockId}) => {
-    const payload = {
+const codePayload = ({blockObjects, topBlockId}: {blockObjects: any; topBlockId: string}) => {
+    const payload: any = {
         type: 'script', // Needs to match backpack-server type name
         name: 'code', // All code currently gets the same name
         mime: 'application/json',

@@ -1,4 +1,4 @@
-const jpegThumbnail = dataUrl => new Promise((resolve, reject) => {
+const jpegThumbnail = (dataUrl: string) => new Promise<string>((resolve, reject) => {
     const image = new Image();
     image.onload = () => {
         const canvas = document.createElement('canvas');

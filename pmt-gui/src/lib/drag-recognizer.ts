@@ -2,6 +2,12 @@ import bindAll from 'lodash.bindall';
 import {getEventXY} from '../lib/touch-utils';
 
 class DragRecognizer {
+    private _onDrag: (current: {x: number; y: number}, initial: {x: number; y: number}) => void;
+    private _onDragEnd: () => void;
+    private _touchDragAngle: number;
+    private _distanceThreshold: number;
+    private _initialOffset: {x: number; y: number} | null;
+    private _gestureState: string;
     /* Gesture states */
     static get STATE_UNIDENTIFIED () {
         return 'unidentified';
@@ -18,6 +24,11 @@ class DragRecognizer {
         onDragEnd = (() => {}),
         touchDragAngle = 70, // Angle and distance thresholds are the same as scratch-blocks
         distanceThreshold = 3
+    }: {
+        onDrag?: (current: {x: number; y: number}, initial: {x: number; y: number}) => void;
+        onDragEnd?: () => void;
+        touchDragAngle?: number;
+        distanceThreshold?: number;
     }) {
         this._onDrag = onDrag;
         this._onDragEnd = onDragEnd;
@@ -36,7 +47,7 @@ class DragRecognizer {
         ]);
     }
 
-    start (event) {
+    start (event: any) {
         this._initialOffset = getEventXY(event);
         this._bindListeners();
     }
@@ -60,17 +71,17 @@ class DragRecognizer {
         window.addEventListener('mousemove', this._handleMove);
         window.addEventListener('touchend', this._handleEnd);
         // touchmove must be marked as non-passive, or else it cannot prevent scrolling
-        window.addEventListener('touchmove', this._handleMove, {passive: false});
+        window.addEventListener('touchmove', this._handleMove as any, {passive: false} as any);
     }
 
     _unbindListeners () {
         window.removeEventListener('mouseup', this._handleEnd);
         window.removeEventListener('mousemove', this._handleMove);
         window.removeEventListener('touchend', this._handleEnd);
-        window.removeEventListener('touchmove', this._handleMove, {passive: false});
+        window.removeEventListener('touchmove', this._handleMove as any, {passive: false} as any);
     }
 
-    _handleMove (event) {
+    _handleMove (event: any) {
         // For gestures identified as vertical scrolls, do not process movement events
         if (this._isScroll()) return;
 
