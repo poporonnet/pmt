@@ -2,6 +2,14 @@
 // We now use GTM, so we could use `react-gtm-module`, but it doesn't support GTM environments (GTM_ENV_AUTH).
 // So we use the GTM snippets directly.
 
+declare global {
+    interface Window {
+        GTM_ID?: string;
+        GTM_ENV_AUTH?: string;
+        dataLayer?: any[];
+    }
+}
+
 const GTM_ID = (process.env.GTM_ID || window.GTM_ID);
 const GTM_ENV_AUTH = (process.env.GTM_ENV_AUTH || window.GTM_ENV_AUTH || '');
 
@@ -13,7 +21,7 @@ const GTM_ENV_AUTH = (process.env.GTM_ENV_AUTH || window.GTM_ENV_AUTH || '');
  * @property {string} script The snippet to load GTM when JavaScript is enabled. Add this to the <head> element.
  * @property {string} noscript The snippet to load GTM when JavaScript is disabled. Add this to the <body> element.
  */
-const makeGtmSnippets = () => ({
+const makeGtmSnippets = (): {script: string; noscript: string} => ({
     script:
         `<!-- Google Tag Manager -->
         <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -47,7 +55,7 @@ if (GTM_ID) {
  * Report analytics to GA4 using an interface similar to the 'react-ga' module we were using for UA.
  */
 const GA4 = {
-    event: ({category, action, label}) => {
+    event: ({category, action, label}: {category: string; action?: string; label?: string}) => {
         window.dataLayer = window.dataLayer || [];
         // There is no perfect mapping from UA to GA4
         // See https://support.google.com/analytics/answer/11091025
