@@ -7,7 +7,7 @@ import codePayload from './backpack/code-payload';
 // Add a new property for the full thumbnail url, which includes the host.
 // Also include a full body url for loading sprite zips
 // TODO retreiving the images through storage would allow us to remove this.
-const includeFullUrls = (item, host) => Object.assign({}, item, {
+const includeFullUrls = (item: any, host: string) => Object.assign({}, item, {
     thumbnailUrl: `${host}/${item.thumbnail}`,
     bodyUrl: `${host}/${item.body}`
 });
@@ -18,13 +18,15 @@ const getBackpackContents = ({
     token,
     limit,
     offset
-}) => new Promise((resolve, reject) => {
+}: {
+    host: string; username: string; token: string; limit: number; offset: number;
+}) => new Promise<any[]>((resolve, reject) => {
     xhr({
         method: 'GET',
         uri: `${host}/${username}?limit=${limit}&offset=${offset}`,
         headers: {'x-token': token},
         json: true
-    }, (error, response) => {
+    }, (error: any, response: any) => {
         if (error || response.statusCode !== 200) {
             return reject(new Error(response.status));
         }
@@ -41,13 +43,13 @@ const saveBackpackObject = ({
     name, // User-facing name of the object being saved
     body, // Base64-encoded body of the object being saved
     thumbnail // Base64-encoded JPEG thumbnail of the object being saved
-}) => new Promise((resolve, reject) => {
+}: {host: string; username: string; token: string; type: string; mime: string; name: string; body: string; thumbnail: string}) => new Promise<any>((resolve, reject) => {
     xhr({
         method: 'POST',
         uri: `${host}/${username}`,
         headers: {'x-token': token},
-        json: {type, mime, name, body, thumbnail}
-    }, (error, response) => {
+        body: JSON.stringify({type, mime, name, body, thumbnail})
+    }, (error: any, response: any) => {
         if (error || response.statusCode !== 200) {
             return reject(new Error(response.status));
         }
@@ -60,12 +62,12 @@ const deleteBackpackObject = ({
     username,
     token,
     id
-}) => new Promise((resolve, reject) => {
+}: {host: string; username: string; token: string; id: string}) => new Promise<any>((resolve, reject) => {
     xhr({
         method: 'DELETE',
         uri: `${host}/${username}/${id}`,
         headers: {'x-token': token}
-    }, (error, response) => {
+    }, (error: any, response: any) => {
         if (error || response.statusCode !== 200) {
             return reject(new Error(response.status));
         }
@@ -75,8 +77,8 @@ const deleteBackpackObject = ({
 
 // Two types of backpack items are not retreivable through storage
 // code, as json and sprite3 as arraybuffer zips.
-const fetchAs = (responseType, uri) => new Promise((resolve, reject) => {
-    xhr({uri, responseType}, (error, response) => {
+const fetchAs = (responseType: 'json' | 'arraybuffer', uri: string) => new Promise<any>((resolve, reject) => {
+    xhr({uri, responseType}, (error: any, response: any) => {
         if (error || response.statusCode !== 200) {
             return reject(new Error(response.status));
         }
