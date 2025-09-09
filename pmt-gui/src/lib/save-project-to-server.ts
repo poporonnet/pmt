@@ -14,7 +14,7 @@ import storage from '../lib/storage';
  * @property {?string} params.title the title of the project.
  * @return {Promise} A promise that resolves when the network request resolves.
  */
-export default function (projectId, vmState, params) {
+export default function (projectId: string | number | null | undefined, vmState: any, params: any) {
     const opts = {
         body: vmState,
         // If we set json:true then the body is double-stringified, so don't
@@ -24,11 +24,11 @@ export default function (projectId, vmState, params) {
         withCredentials: true
     };
     const creatingProject = projectId === null || typeof projectId === 'undefined';
-    const queryParams = {};
-    if (params.hasOwnProperty('originalId')) queryParams.original_id = params.originalId;
-    if (params.hasOwnProperty('isCopy')) queryParams.is_copy = params.isCopy;
-    if (params.hasOwnProperty('isRemix')) queryParams.is_remix = params.isRemix;
-    if (params.hasOwnProperty('title')) queryParams.title = params.title;
+    const queryParams: any = {};
+    if (Object.prototype.hasOwnProperty.call(params, 'originalId')) queryParams.original_id = params.originalId;
+    if (Object.prototype.hasOwnProperty.call(params, 'isCopy')) queryParams.is_copy = params.isCopy;
+    if (Object.prototype.hasOwnProperty.call(params, 'isRemix')) queryParams.is_remix = params.isRemix;
+    if (Object.prototype.hasOwnProperty.call(params, 'title')) queryParams.title = params.title;
     let qs = queryString.stringify(queryParams);
     if (qs) qs = `?${qs}`;
     if (creatingProject) {
@@ -42,8 +42,8 @@ export default function (projectId, vmState, params) {
             url: `${storage.projectHost}/${projectId}${qs}`
         });
     }
-    return new Promise((resolve, reject) => {
-        xhr(opts, (err, response) => {
+    return new Promise<any>((resolve, reject) => {
+        xhr(opts as any, (err: any, response: any) => {
             if (err) return reject(err);
             if (response.statusCode !== 200) return reject(response.statusCode);
             let body;

@@ -1,4 +1,4 @@
-import messages from './tag-messages.js';
+import messages from './tag-messages';
 export default [
     {tag: 'fantasy', intlLabel: messages.fantasy},
     {tag: 'music', intlLabel: messages.music},

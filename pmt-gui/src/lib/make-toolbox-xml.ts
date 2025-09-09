@@ -141,7 +141,7 @@ const motion = function (isInitialSetup, isStage, targetId, colors) {
     `;
 };
 
-const xmlEscape = function (unsafe) {
+const xmlEscape = function (unsafe: string) {
     return unsafe.replace(/[<>&'"]/g, c => {
         switch (c) {
         case '<': return '&lt;';
