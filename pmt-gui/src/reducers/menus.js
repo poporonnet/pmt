@@ -2,11 +2,9 @@ const OPEN_MENU = 'scratch-gui/menus/OPEN_MENU';
 const CLOSE_MENU = 'scratch-gui/menus/CLOSE_MENU';
 
 const MENU_ABOUT = 'aboutMenu';
-const MENU_ACCOUNT = 'accountMenu';
 const MENU_EDIT = 'editMenu';
 const MENU_FILE = 'fileMenu';
 const MENU_LANGUAGE = 'languageMenu';
-const MENU_LOGIN = 'loginMenu';
 const MENU_MODE = 'modeMenu';
 const MENU_SETTINGS = 'settingsMenu';
 const MENU_THEME = 'themeMenu';
@@ -57,17 +55,13 @@ const rootMenu = new Menu('root')
     .addChild(new Menu(MENU_EDIT))
     .addChild(new Menu(MENU_MODE))
     .addChild(new Menu(MENU_SETTINGS))
-    .addChild(new Menu(MENU_LOGIN))
-    .addChild(new Menu(MENU_ACCOUNT))
     .addChild(new Menu(MENU_ABOUT));
 
 const initialState = {
     [MENU_ABOUT]: false,
-    [MENU_ACCOUNT]: false,
     [MENU_EDIT]: false,
     [MENU_FILE]: false,
     [MENU_LANGUAGE]: false,
-    [MENU_LOGIN]: false,
     [MENU_MODE]: false,
     [MENU_SETTINGS]: false,
     [MENU_THEME]: false
@@ -114,9 +108,6 @@ const openAboutMenu = () => openMenu(MENU_ABOUT);
 const closeAboutMenu = () => closeMenu(MENU_ABOUT);
 const aboutMenuOpen = state => state.scratchGui.menus[MENU_ABOUT];
 
-const openAccountMenu = () => openMenu(MENU_ACCOUNT);
-const closeAccountMenu = () => closeMenu(MENU_ACCOUNT);
-const accountMenuOpen = state => state.scratchGui.menus[MENU_ACCOUNT];
 
 const openEditMenu = () => openMenu(MENU_EDIT);
 const closeEditMenu = () => closeMenu(MENU_EDIT);
@@ -130,9 +121,6 @@ const openLanguageMenu = () => openMenu(MENU_LANGUAGE);
 const closeLanguageMenu = () => closeMenu(MENU_LANGUAGE);
 const languageMenuOpen = state => state.scratchGui.menus[MENU_LANGUAGE];
 
-const openLoginMenu = () => openMenu(MENU_LOGIN);
-const closeLoginMenu = () => closeMenu(MENU_LOGIN);
-const loginMenuOpen = state => state.scratchGui.menus[MENU_LOGIN];
 
 const openModeMenu = () => openMenu(MENU_MODE);
 const closeModeMenu = () => closeMenu(MENU_MODE);
@@ -152,9 +140,6 @@ export {
     openAboutMenu,
     closeAboutMenu,
     aboutMenuOpen,
-    openAccountMenu,
-    closeAccountMenu,
-    accountMenuOpen,
     openEditMenu,
     closeEditMenu,
     editMenuOpen,
@@ -164,9 +149,6 @@ export {
     openLanguageMenu,
     closeLanguageMenu,
     languageMenuOpen,
-    openLoginMenu,
-    closeLoginMenu,
-    loginMenuOpen,
     openModeMenu,
     closeModeMenu,
     modeMenuOpen,

@@ -20,9 +20,6 @@ import ProjectWatcher from '../../containers/project-watcher.jsx';
 import MenuBarMenu from './menu-bar-menu.jsx';
 import {MenuItem, MenuSection} from '../menu/menu.jsx';
 import ProjectTitleInput from './project-title-input.jsx';
-import AuthorInfo from './author-info.jsx';
-import AccountNav from '../../containers/account-nav.jsx';
-import LoginDropdown from './login-dropdown.jsx';
 import SB3Downloader from '../../containers/sb3-downloader.jsx';
 import DeletionRestorer from '../../containers/deletion-restorer.jsx';
 import TurboMode from '../../containers/turbo-mode.jsx';
@@ -54,18 +51,12 @@ import {
     openAboutMenu,
     closeAboutMenu,
     aboutMenuOpen,
-    openAccountMenu,
-    closeAccountMenu,
-    accountMenuOpen,
     openFileMenu,
     closeFileMenu,
     fileMenuOpen,
     openEditMenu,
     closeEditMenu,
     editMenuOpen,
-    openLoginMenu,
-    closeLoginMenu,
-    loginMenuOpen,
     openModeMenu,
     closeModeMenu,
     modeMenuOpen,
@@ -664,15 +655,7 @@ class MenuBar extends React.Component {
                                 />
                             </MenuBarItemTooltip>
                         </div>
-                    ) : ((this.props.authorUsername && this.props.authorUsername !== this.props.username) ? (
-                        <AuthorInfo
-                            className={styles.authorInfo}
-                            imageUrl={this.props.authorThumbnailUrl}
-                            projectTitle={this.props.projectTitle}
-                            userId={this.props.authorId}
-                            username={this.props.authorUsername}
-                        />
-                    ) : null)}
+                    ) : null}
                     <div className={classNames(styles.menuBarItem)}>
                         {this.props.canShare ? (
                             (this.props.isShowingProject || this.props.isUpdating) && (
@@ -745,126 +728,6 @@ class MenuBar extends React.Component {
                             <SaveStatus />
                         )}
                     </div>
-                    {this.props.sessionExists ? (
-                        this.props.username ? (
-                            // ************ user is logged in ************
-                            <React.Fragment>
-                                <a href="/mystuff/">
-                                    <div
-                                        className={classNames(
-                                            styles.menuBarItem,
-                                            styles.hoverable,
-                                            styles.mystuffButton
-                                        )}
-                                    >
-                                        <img
-                                            className={styles.mystuffIcon}
-                                            src={mystuffIcon}
-                                        />
-                                    </div>
-                                </a>
-                                <AccountNav
-                                    className={classNames(
-                                        styles.menuBarItem,
-                                        styles.hoverable,
-                                        {[styles.active]: this.props.accountMenuOpen}
-                                    )}
-                                    isOpen={this.props.accountMenuOpen}
-                                    isRtl={this.props.isRtl}
-                                    menuBarMenuClassName={classNames(styles.menuBarMenu)}
-                                    onClick={this.props.onClickAccount}
-                                    onClose={this.props.onRequestCloseAccount}
-                                    onLogOut={this.props.onLogOut}
-                                />
-                            </React.Fragment>
-                        ) : (
-                            // ********* user not logged in, but a session exists
-                            // ********* so they can choose to log in
-                            <React.Fragment>
-                                <div
-                                    className={classNames(
-                                        styles.menuBarItem,
-                                        styles.hoverable
-                                    )}
-                                    key="join"
-                                    onMouseUp={this.props.onOpenRegistration}
-                                >
-                                    <FormattedMessage
-                                        defaultMessage="Join Scratch"
-                                        description="Link for creating a Scratch account"
-                                        id="gui.menuBar.joinScratch"
-                                    />
-                                </div>
-                                <div
-                                    className={classNames(
-                                        styles.menuBarItem,
-                                        styles.hoverable
-                                    )}
-                                    key="login"
-                                    onMouseUp={this.props.onClickLogin}
-                                >
-                                    <FormattedMessage
-                                        defaultMessage="Sign in"
-                                        description="Link for signing in to your Scratch account"
-                                        id="gui.menuBar.signIn"
-                                    />
-                                    <LoginDropdown
-                                        className={classNames(styles.menuBarMenu)}
-                                        isOpen={this.props.loginMenuOpen}
-                                        isRtl={this.props.isRtl}
-                                        renderLogin={this.props.renderLogin}
-                                        onClose={this.props.onRequestCloseLogin}
-                                    />
-                                </div>
-                            </React.Fragment>
-                        )
-                    ) : (
-                        // ******** no login session is available, so don't show login stuff
-                        <React.Fragment>
-                            {this.props.showComingSoon ? (
-                                <React.Fragment>
-                                    <MenuBarItemTooltip id="mystuff">
-                                        <div
-                                            className={classNames(
-                                                styles.menuBarItem,
-                                                styles.hoverable,
-                                                styles.mystuffButton
-                                            )}
-                                        >
-                                            <img
-                                                className={styles.mystuffIcon}
-                                                src={mystuffIcon}
-                                            />
-                                        </div>
-                                    </MenuBarItemTooltip>
-                                    <MenuBarItemTooltip
-                                        id="account-nav"
-                                        place={this.props.isRtl ? 'right' : 'left'}
-                                    >
-                                        <div
-                                            className={classNames(
-                                                styles.menuBarItem,
-                                                styles.hoverable,
-                                                styles.accountNavMenu
-                                            )}
-                                        >
-                                            <img
-                                                className={styles.profileIcon}
-                                                src={profileIcon}
-                                            />
-                                            <span>
-                                                {'smalruby-hatti'}
-                                            </span>
-                                            <img
-                                                className={styles.dropdownCaretIcon}
-                                                src={dropdownCaret}
-                                            />
-                                        </div>
-                                    </MenuBarItemTooltip>
-                                </React.Fragment>
-                            ) : []}
-                        </React.Fragment>
-                    )}
                 </div>
 
                 {aboutButton}
@@ -875,7 +738,6 @@ class MenuBar extends React.Component {
 
 MenuBar.propTypes = {
     aboutMenuOpen: PropTypes.bool,
-    accountMenuOpen: PropTypes.bool,
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     authorThumbnailUrl: PropTypes.string,
     authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
@@ -901,7 +763,6 @@ MenuBar.propTypes = {
     isTotallyNormal: PropTypes.bool,
     isUpdating: PropTypes.bool,
     locale: PropTypes.string.isRequired,
-    loginMenuOpen: PropTypes.bool,
     logo: PropTypes.string,
     mode2020: PropTypes.bool,
     modeMenuOpen: PropTypes.bool,
@@ -915,10 +776,8 @@ MenuBar.propTypes = {
             })
         )
     ]),
-    onClickAccount: PropTypes.func,
     onClickEdit: PropTypes.func,
     onClickFile: PropTypes.func,
-    onClickLogin: PropTypes.func,
     onClickLogo: PropTypes.func,
     onClickMode: PropTypes.func,
     onClickNew: PropTypes.func,
@@ -926,14 +785,10 @@ MenuBar.propTypes = {
     onClickSave: PropTypes.func,
     onClickSaveAsCopy: PropTypes.func,
     onClickSettings: PropTypes.func,
-    onLogOut: PropTypes.func,
-    onOpenRegistration: PropTypes.func,
     onProjectTelemetryEvent: PropTypes.func,
     onRequestCloseAbout: PropTypes.func,
-    onRequestCloseAccount: PropTypes.func,
     onRequestCloseEdit: PropTypes.func,
     onRequestCloseFile: PropTypes.func,
-    onRequestCloseLogin: PropTypes.func,
     onRequestCloseMode: PropTypes.func,
     onRequestCloseSettings: PropTypes.func,
     onRequestOpenAbout: PropTypes.func,
@@ -942,13 +797,10 @@ MenuBar.propTypes = {
     onShare: PropTypes.func,
     onStartSelectingFileUpload: PropTypes.func,
     projectTitle: PropTypes.string,
-    renderLogin: PropTypes.func,
-    sessionExists: PropTypes.bool,
     settingsMenuOpen: PropTypes.bool,
     shouldSaveBeforeTransition: PropTypes.func,
     showComingSoon: PropTypes.bool,
     updateRubyCodeTargetState: PropTypes.func,
-    username: PropTypes.string,
     vm: PropTypes.instanceOf(VM).isRequired
 };
 
@@ -959,10 +811,8 @@ MenuBar.defaultProps = {
 
 const mapStateToProps = (state, ownProps) => {
     const loadingState = state.scratchGui.projectState.loadingState;
-    const user = state.session && state.session.session && state.session.session.user;
     return {
         aboutMenuOpen: aboutMenuOpen(state),
-        accountMenuOpen: accountMenuOpen(state),
         currentLocale: state.locales.locale,
         fileMenuOpen: fileMenuOpen(state),
         editMenuOpen: editMenuOpen(state),
@@ -970,14 +820,9 @@ const mapStateToProps = (state, ownProps) => {
         isUpdating: getIsUpdating(loadingState),
         isShowingProject: getIsShowingProject(loadingState),
         locale: state.locales.locale,
-        loginMenuOpen: loginMenuOpen(state),
         modeMenuOpen: modeMenuOpen(state),
         projectTitle: state.scratchGui.projectTitle,
-        sessionExists: state.session && typeof state.session.session !== 'undefined',
         settingsMenuOpen: settingsMenuOpen(state),
-        username: user ? user.username : null,
-        userOwnsProject: ownProps.authorUsername && user &&
-            (ownProps.authorUsername === user.username),
         vm: state.scratchGui.vm,
         mode220022BC: isTimeTravel220022BC(state),
         mode1920: isTimeTravel1920(state),
@@ -989,14 +834,10 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     autoUpdateProject: () => dispatch(autoUpdateProject()),
-    onClickAccount: () => dispatch(openAccountMenu()),
-    onRequestCloseAccount: () => dispatch(closeAccountMenu()),
     onClickFile: () => dispatch(openFileMenu()),
     onRequestCloseFile: () => dispatch(closeFileMenu()),
     onClickEdit: () => dispatch(openEditMenu()),
     onRequestCloseEdit: () => dispatch(closeEditMenu()),
-    onClickLogin: () => dispatch(openLoginMenu()),
-    onRequestCloseLogin: () => dispatch(closeLoginMenu()),
     onClickMode: () => dispatch(openModeMenu()),
     onRequestCloseMode: () => dispatch(closeModeMenu()),
     onRequestOpenAbout: () => dispatch(openAboutMenu()),

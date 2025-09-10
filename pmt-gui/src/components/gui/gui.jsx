@@ -55,7 +55,6 @@ let isRendererSupported = null;
 
 const GUIComponent = props => {
     const {
-        accountNavOpen,
         activeTabIndex,
         alertsVisible,
         authorId,
@@ -92,13 +91,7 @@ const GUIComponent = props => {
         isTotallyNormal,
         loading,
         logo,
-        renderLogin,
         onClickAbout,
-        onClickAccountNav,
-        onCloseAccountNav,
-        onLogOut,
-        onOpenRegistration,
-        onToggleLoginOpen,
         onActivateCostumesTab,
         onActivateSoundsTab,
         onActivateRubyTab,
@@ -206,7 +199,6 @@ const GUIComponent = props => {
                     />
                 ) : null}
                 <MenuBar
-                    accountNavOpen={accountNavOpen}
                     authorId={authorId}
                     authorThumbnailUrl={authorThumbnailUrl}
                     authorUsername={authorUsername}
@@ -224,19 +216,13 @@ const GUIComponent = props => {
                     isShared={isShared}
                     isTotallyNormal={isTotallyNormal}
                     logo={logo}
-                    renderLogin={renderLogin}
                     showComingSoon={showComingSoon}
                     onClickAbout={onClickAbout}
-                    onClickAccountNav={onClickAccountNav}
                     onClickLogo={onClickLogo}
-                    onCloseAccountNav={onCloseAccountNav}
-                    onLogOut={onLogOut}
-                    onOpenRegistration={onOpenRegistration}
                     onProjectTelemetryEvent={onProjectTelemetryEvent}
                     onSeeCommunity={onSeeCommunity}
                     onShare={onShare}
                     onStartSelectingFileUpload={onStartSelectingFileUpload}
-                    onToggleLoginOpen={onToggleLoginOpen}
                 />
                 <Box className={styles.bodyWrapper}>
                     <Box className={styles.flexWrapper}>
@@ -386,7 +372,6 @@ const GUIComponent = props => {
 };
 
 GUIComponent.propTypes = {
-    accountNavOpen: PropTypes.bool,
     activeTabIndex: PropTypes.number,
     authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]), // can be false
     authorThumbnailUrl: PropTypes.string,
@@ -424,12 +409,8 @@ GUIComponent.propTypes = {
     onActivateRubyTab: PropTypes.func,
     onActivateSoundsTab: PropTypes.func,
     onActivateTab: PropTypes.func,
-    onClickAccountNav: PropTypes.func,
     onClickLogo: PropTypes.func,
-    onCloseAccountNav: PropTypes.func,
     onExtensionButtonClick: PropTypes.func,
-    onLogOut: PropTypes.func,
-    onOpenRegistration: PropTypes.func,
     onRequestCloseBackdropLibrary: PropTypes.func,
     onRequestCloseCostumeLibrary: PropTypes.func,
     onRequestCloseTelemetryModal: PropTypes.func,
@@ -441,8 +422,6 @@ GUIComponent.propTypes = {
     onTelemetryModalCancel: PropTypes.func,
     onTelemetryModalOptIn: PropTypes.func,
     onTelemetryModalOptOut: PropTypes.func,
-    onToggleLoginOpen: PropTypes.func,
-    renderLogin: PropTypes.func,
     rubyTabVisible: PropTypes.bool,
     showComingSoon: PropTypes.bool,
     soundsTabVisible: PropTypes.bool,
