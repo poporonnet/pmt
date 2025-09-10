@@ -1,5 +1,5 @@
-const shell = require('shelljs');
-const fs = require('fs');
+import shell from 'shelljs';
+import fs from 'fs';
 
 if (!fs.existsSync('./static/javascripts/setup-opal.js')) {
     shell.mkdir('-p', './static/javascripts');
