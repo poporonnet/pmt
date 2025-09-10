@@ -31,8 +31,6 @@ import vmStatusReducer, {vmStatusInitialState} from './vm-status';
 import workspaceMetricsReducer, {workspaceMetricsInitialState} from './workspace-metrics';
 import throttle from 'redux-throttle';
 
-import decks from '../lib/libraries/decks/index.jsx';
-
 const guiMiddleware = compose(applyMiddleware(throttle(300, {leading: true, trailing: true})));
 
 const guiInitialState = {
@@ -106,25 +104,6 @@ const initEmbedded = function (currentState) {
     );
 };
 
-const initTutorialCard = function (currentState, deckId) {
-    return Object.assign(
-        {},
-        currentState,
-        {
-            cards: {
-                visible: true,
-                content: decks,
-                activeDeckId: deckId,
-                expanded: true,
-                step: 0,
-                x: 0,
-                y: 0,
-                dragging: false
-            }
-        }
-    );
-};
-
 const initTelemetryModal = function (currentState) {
     return Object.assign(
         {},
@@ -177,6 +156,5 @@ export {
     initEmbedded,
     initFullScreen,
     initPlayer,
-    initTelemetryModal,
-    initTutorialCard
+    initTelemetryModal
 };

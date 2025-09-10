@@ -1,4 +1,4 @@
-const path = require('path');
+import path from 'path';
 module.exports = {
     extends: [path.resolve(__dirname, '..', '.eslintrc.js')],
     rules: {

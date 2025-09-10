@@ -32,7 +32,6 @@ import SettingsMenu from './settings-menu.jsx';
 import RubyUploader from '../../containers/ruby-uploader.jsx'; // kani-robo
 import RubyUploaderOld from '../../containers/ruby-uploader-old.jsx'; // kani-robo
 
-import {openTipsLibrary} from '../../reducers/modals';
 import {setPlayer} from '../../reducers/mode';
 import {
     isTimeTravel220022BC,
@@ -990,7 +989,6 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => ({
     autoUpdateProject: () => dispatch(autoUpdateProject()),
-    onOpenTipLibrary: () => dispatch(openTipsLibrary()),
     onClickAccount: () => dispatch(openAccountMenu()),
     onRequestCloseAccount: () => dispatch(closeAccountMenu()),
     onClickFile: () => dispatch(openFileMenu()),

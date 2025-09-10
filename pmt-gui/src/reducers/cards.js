@@ -1,7 +1,5 @@
 import analytics from '../lib/analytics';
 
-import decks from '../lib/libraries/decks/index.jsx';
-
 const CLOSE_CARDS = 'scratch-gui/cards/CLOSE_CARDS';
 const SHRINK_EXPAND_CARDS = 'scratch-gui/cards/SHRINK_EXPAND_CARDS';
 const VIEW_CARDS = 'scratch-gui/cards/VIEW_CARDS';
@@ -14,7 +12,7 @@ const END_DRAG = 'scratch-gui/cards/END_DRAG';
 
 const initialState = {
     visible: false,
-    content: decks,
+    content: {},
     activeDeckId: null,
     step: 0,
     x: 0,
@@ -93,9 +91,6 @@ const activateDeck = function (activeDeckId) {
     };
 };
 
-const viewCards = function () {
-    return {type: VIEW_CARDS};
-};
 
 const closeCards = function () {
     return {type: CLOSE_CARDS};
@@ -129,7 +124,6 @@ export {
     reducer as default,
     initialState as cardsInitialState,
     activateDeck,
-    viewCards,
     closeCards,
     shrinkExpandCards,
     nextStep,
