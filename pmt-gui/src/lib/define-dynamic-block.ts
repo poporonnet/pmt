@@ -16,7 +16,15 @@ import BlockType from 'scratch-vm/src/extension-support/block-type';
 // TODO: grow this until it can fully replace `_convertForScratchBlocks` in the VM runtime
 const defineDynamicBlock = (ScratchBlocks, categoryInfo, staticBlockInfo, extendedOpcode) => ({
     init: function () {
-        const blockJson = {
+        const blockJson: {
+            type: any;
+            inputsInline: boolean;
+            category: any;
+            colour: any;
+            colourSecondary: any;
+            colourTertiary: any;
+            extensions?: string[];
+        } = {
             type: extendedOpcode,
             inputsInline: true,
             category: categoryInfo.name,

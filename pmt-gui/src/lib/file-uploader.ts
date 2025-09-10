@@ -140,7 +140,7 @@ const costumeUpload = function (fileData, fileType, storage, handleCostume, hand
         return; // Abandon this load, do not try to load gif itself
     }
     default:
-        handleError(`Encountered unexpected file type: ${fileType}`);
+        handleError();
         return;
     }
 
@@ -248,7 +248,7 @@ const spriteUpload = function (fileData, fileType, spriteName, storage, handleSp
         return;
     }
     default: {
-        handleError(`Encountered unexpected file type: ${fileType}`);
+        handleError();
         return;
     }
     }
