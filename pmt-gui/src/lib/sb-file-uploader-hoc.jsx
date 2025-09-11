@@ -226,16 +226,15 @@ const SBFileUploaderHOC = function (WrappedComponent) {
             loadProject: PropTypes.func
         })
     };
-    const mapStateToProps = (state, ownProps) => {
+    const mapStateToProps = state => {
         const loadingState = state.scratchGui.projectState.loadingState;
-        const user = state.session && state.session.session && state.session.session.user;
+        // Remove dependency on external session state
         return {
             isLoadingUpload: getIsLoadingUpload(loadingState),
             isShowingWithoutId: getIsShowingWithoutId(loadingState),
             loadingState: loadingState,
             projectChanged: state.scratchGui.projectChanged,
-            userOwnsProject: ownProps.authorUsername && user &&
-                (ownProps.authorUsername === user.username),
+            userOwnsProject: false,
             vm: state.scratchGui.vm
         };
     };
@@ -258,9 +257,11 @@ const SBFileUploaderHOC = function (WrappedComponent) {
         requestProjectUpload: loadingState => dispatch(requestProjectUpload(loadingState))
     });
     // Allow incoming props to override redux-provided props. Used to mock in tests.
-    const mergeProps = (stateProps, dispatchProps, ownProps) => Object.assign(
-        {}, stateProps, dispatchProps, ownProps
-    );
+    const mergeProps = (stateProps, dispatchProps, ownProps) => ({
+        ...stateProps,
+        ...dispatchProps,
+        ...ownProps
+    });
     return injectIntl(connect(
         mapStateToProps,
         mapDispatchToProps,

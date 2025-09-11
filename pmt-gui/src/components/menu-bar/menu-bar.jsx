@@ -69,8 +69,6 @@ import collectMetadata from '../../lib/collect-metadata';
 
 import styles from './menu-bar.css';
 
-import mystuffIcon from './icon--mystuff.png';
-import profileIcon from './profile-hatti.png';
 import remixIcon from './icon--remix.svg';
 import dropdownCaret from './dropdown-caret.svg';
 import aboutIcon from './icon--about.svg';
@@ -738,9 +736,6 @@ class MenuBar extends React.Component {
 
 MenuBar.propTypes = {
     aboutMenuOpen: PropTypes.bool,
-    authorId: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
-    authorThumbnailUrl: PropTypes.string,
-    authorUsername: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     autoUpdateProject: PropTypes.func,
     canChangeLanguage: PropTypes.bool,
     canChangeTheme: PropTypes.bool,
@@ -809,7 +804,7 @@ MenuBar.defaultProps = {
     onShare: () => { }
 };
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = state => {
     const loadingState = state.scratchGui.projectState.loadingState;
     return {
         aboutMenuOpen: aboutMenuOpen(state),

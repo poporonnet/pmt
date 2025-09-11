@@ -242,23 +242,7 @@ Backpack.propTypes = {
     vm: PropTypes.instanceOf(VM)
 };
 
-const getTokenAndUsername = state => {
-    // Look for the session state provided by scratch-www
-    if (state.session && state.session.session && state.session.session.user) {
-        return {
-            token: state.session.session.user.token,
-            username: state.session.session.user.username
-        };
-    }
-    // Otherwise try to pull testing params out of the URL, or return nulls
-    // TODO a hack for testing the backpack
-    const tokenMatches = window.location.href.match(/[?&]token=([^&]*)&?/);
-    const usernameMatches = window.location.href.match(/[?&]username=([^&]*)&?/);
-    return {
-        token: tokenMatches ? tokenMatches[1] : null,
-        username: usernameMatches ? usernameMatches[1] : null
-    };
-};
+const getTokenAndUsername = () => ({token: null, username: null});
 
 const mapStateToProps = state => Object.assign(
     {

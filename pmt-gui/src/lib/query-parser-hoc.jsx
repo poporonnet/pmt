@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import queryString from 'query-string';
 import {connect} from 'react-redux';
 
 // Tutorials removed: no tutorial-from-url, no cards/tips handling
@@ -10,19 +8,9 @@ import {connect} from 'react-redux';
  * @returns {React.Component} component with query parsing behavior
  */
 const QueryParserHOC = function (WrappedComponent) {
-    class QueryParserComponent extends React.Component {
-        render () {
-            const componentProps = this.props;
-            return (
-                <WrappedComponent
-                    {...componentProps}
-                />
-            );
-        }
-    }
-    QueryParserComponent.propTypes = {
-        // no tutorial-related props
-    };
+    const QueryParserComponent = props => (
+        <WrappedComponent {...props} />
+    );
     return connect(
         null,
         null
