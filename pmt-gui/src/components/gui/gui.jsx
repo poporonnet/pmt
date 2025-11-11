@@ -37,8 +37,6 @@ import { themeMap } from '../../lib/themes';
 import styles from './gui.css';
 import addExtensionIcon from './icon--extensions.svg';
 import codeIcon from './icon--code.svg';
-import costumesIcon from './icon--costumes.svg';
-import soundsIcon from './icon--sounds.svg';
 import rubyIcon from './icon--ruby.svg';
 
 const messages = defineMessages({
@@ -79,7 +77,6 @@ const GUIComponent = props => {
         children,
         connectionModalVisible,
         costumeLibraryVisible,
-        costumesTabVisible,
         enableCommunity,
         intl,
         isCreating,
@@ -92,8 +89,6 @@ const GUIComponent = props => {
         loading,
         logo,
         onClickAbout,
-        onActivateCostumesTab,
-        onActivateSoundsTab,
         onActivateRubyTab,
         onActivateTab,
         onClickLogo,
@@ -110,10 +105,8 @@ const GUIComponent = props => {
         onTelemetryModalOptIn,
         onTelemetryModalOptOut,
         showComingSoon,
-        soundsTabVisible,
         rubyTabVisible,
         stageSizeMode,
-        targetIsStage,
         telemetryModalVisible,
         theme,
         vm,
