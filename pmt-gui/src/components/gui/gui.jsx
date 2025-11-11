@@ -11,9 +11,7 @@ import VM from 'scratch-vm';
 import Renderer from 'scratch-render';
 
 import Blocks from '../../containers/blocks.jsx';
-import CostumeTab from '../../containers/costume-tab.jsx';
 import TargetPane from '../../containers/target-pane.jsx';
-import SoundTab from '../../containers/sound-tab.jsx';
 import RubyTab from '../../containers/ruby-tab.jsx';
 import StageWrapper from '../../containers/stage-wrapper.jsx';
 import Loader from '../loader/loader.jsx';
@@ -37,8 +35,6 @@ import {themeMap} from '../../lib/themes';
 import styles from './gui.css';
 import addExtensionIcon from './icon--extensions.svg';
 import codeIcon from './icon--code.svg';
-import costumesIcon from './icon--costumes.svg';
-import soundsIcon from './icon--sounds.svg';
 import rubyIcon from './icon--ruby.svg';
 
 const messages = defineMessages({
@@ -79,7 +75,6 @@ const GUIComponent = props => {
         children,
         connectionModalVisible,
         costumeLibraryVisible,
-        costumesTabVisible,
         enableCommunity,
         intl,
         isCreating,
@@ -92,8 +87,6 @@ const GUIComponent = props => {
         loading,
         logo,
         onClickAbout,
-        onActivateCostumesTab,
-        onActivateSoundsTab,
         onActivateRubyTab,
         onActivateTab,
         onClickLogo,
@@ -110,10 +103,8 @@ const GUIComponent = props => {
         onTelemetryModalOptIn,
         onTelemetryModalOptOut,
         showComingSoon,
-        soundsTabVisible,
         rubyTabVisible,
         stageSizeMode,
-        targetIsStage,
         telemetryModalVisible,
         theme,
         vm,
@@ -249,42 +240,6 @@ const GUIComponent = props => {
                                     </Tab>
                                     <Tab
                                         className={tabClassNames.tab}
-                                        onClick={onActivateCostumesTab}
-                                    >
-                                        <img
-                                            draggable={false}
-                                            src={costumesIcon}
-                                        />
-                                        {targetIsStage ? (
-                                            <FormattedMessage
-                                                defaultMessage="Backdrops"
-                                                description="Button to get to the backdrops panel"
-                                                id="gui.gui.backdropsTab"
-                                            />
-                                        ) : (
-                                            <FormattedMessage
-                                                defaultMessage="Costumes"
-                                                description="Button to get to the costumes panel"
-                                                id="gui.gui.costumesTab"
-                                            />
-                                        )}
-                                    </Tab>
-                                    <Tab
-                                        className={tabClassNames.tab}
-                                        onClick={onActivateSoundsTab}
-                                    >
-                                        <img
-                                            draggable={false}
-                                            src={soundsIcon}
-                                        />
-                                        <FormattedMessage
-                                            defaultMessage="Sounds"
-                                            description="Button to get to the sounds panel"
-                                            id="gui.gui.soundsTab"
-                                        />
-                                    </Tab>
-                                    <Tab
-                                        className={tabClassNames.tab}
                                         onClick={onActivateRubyTab}
                                     >
                                         <img
@@ -329,12 +284,6 @@ const GUIComponent = props => {
                                     <Box className={styles.watermark}>
                                         <Watermark />
                                     </Box>
-                                </TabPanel>
-                                <TabPanel className={tabClassNames.tabPanel}>
-                                    {costumesTabVisible ? <CostumeTab vm={vm} /> : null}
-                                </TabPanel>
-                                <TabPanel className={tabClassNames.tabPanel}>
-                                    {soundsTabVisible ? <SoundTab vm={vm} /> : null}
                                 </TabPanel>
                                 <TabPanel className={tabClassNames.tabPanel}>
                                     <RubyTab
@@ -407,7 +356,6 @@ GUIComponent.propTypes = {
     logo: PropTypes.string,
     onActivateCostumesTab: PropTypes.func,
     onActivateRubyTab: PropTypes.func,
-    onActivateSoundsTab: PropTypes.func,
     onActivateTab: PropTypes.func,
     onClickLogo: PropTypes.func,
     onExtensionButtonClick: PropTypes.func,
