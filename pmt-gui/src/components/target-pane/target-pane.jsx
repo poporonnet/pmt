@@ -18,7 +18,6 @@ import styles from './target-pane.css';
  */
 const TargetPane = ({
     editingTarget,
-    fileInputRef,
     hoveredTarget,
     spriteLibraryVisible,
     onActivateBlocksTab,
@@ -33,13 +32,8 @@ const TargetPane = ({
     onDrop,
     onDuplicateSprite,
     onExportSprite,
-    onFileUploadClick,
-    onNewSpriteClick,
-    onPaintSpriteClick,
     onRequestCloseSpriteLibrary,
     onSelectSprite,
-    onSpriteUpload,
-    onSurpriseSpriteClick,
     raiseSprites,
     stage,
     stageSize,
@@ -57,7 +51,6 @@ const TargetPane = ({
             hoveredTarget={hoveredTarget}
             raised={raiseSprites}
             selectedId={editingTarget}
-            spriteFileInput={fileInputRef}
             sprites={sprites}
             stageSize={stageSize}
             onChangeSpriteDirection={onChangeSpriteDirection}
@@ -71,12 +64,7 @@ const TargetPane = ({
             onDrop={onDrop}
             onDuplicateSprite={onDuplicateSprite}
             onExportSprite={onExportSprite}
-            onFileUploadClick={onFileUploadClick}
-            onNewSpriteClick={onNewSpriteClick}
-            onPaintSpriteClick={onPaintSpriteClick}
             onSelectSprite={onSelectSprite}
-            onSpriteUpload={onSpriteUpload}
-            onSurpriseSpriteClick={onSurpriseSpriteClick}
         />
         <div className={styles.stageSelectorWrapper}>
             {stage.id && <StageSelector
