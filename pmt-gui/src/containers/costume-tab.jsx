@@ -19,10 +19,6 @@ import {
     openBackdropLibrary
 } from '../reducers/modals';
 
-import {
-    activateTab
-} from '../reducers/editor-tab';
-
 import {setRestore} from '../reducers/restore-deletion';
 import {showStandardAlert, closeAlertWithId} from '../reducers/alerts';
 
@@ -328,7 +324,6 @@ CostumeTab.propTypes = {
     editingTarget: PropTypes.string,
     intl: intlShape,
     isRtl: PropTypes.bool,
-    onActivateSoundsTab: PropTypes.func.isRequired,
     onCloseImporting: PropTypes.func.isRequired,
     onNewLibraryBackdropClick: PropTypes.func.isRequired,
     onNewLibraryCostumeClick: PropTypes.func.isRequired,

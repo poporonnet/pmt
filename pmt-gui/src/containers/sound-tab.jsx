@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import bindAll from 'lodash.bindall';
-import {defineMessages, intlShape, injectIntl} from 'react-intl';
+import { defineMessages, intlShape, injectIntl } from 'react-intl';
 import VM from 'scratch-vm';
 
 import AssetPanel from '../components/asset-panel/asset-panel.jsx';
@@ -18,12 +18,12 @@ import SoundEditor from './sound-editor.jsx';
 import SoundLibrary from './sound-library.jsx';
 
 import soundLibraryContent from '../lib/libraries/sounds.json';
-import {handleFileUpload, soundUpload} from '../lib/file-uploader';
+import { handleFileUpload, soundUpload } from '../lib/file-uploader';
 import errorBoundaryHOC from '../lib/error-boundary-hoc.jsx';
 import DragConstants from '../lib/drag-constants';
 import downloadBlob from '../lib/download-blob';
 
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 import {
     closeSoundLibrary,
@@ -31,12 +31,8 @@ import {
     openSoundRecorder
 } from '../reducers/modals';
 
-import {
-    activateTab
-} from '../reducers/editor-tab';
-
-import {setRestore} from '../reducers/restore-deletion';
-import {showStandardAlert, closeAlertWithId} from '../reducers/alerts';
+import { setRestore } from '../reducers/restore-deletion';
+import { showStandardAlert, closeAlertWithId } from '../reducers/alerts';
 
 class SoundTab extends React.Component {
     constructor (props) {
