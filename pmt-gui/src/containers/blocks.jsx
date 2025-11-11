@@ -14,21 +14,21 @@ import ExtensionLibrary from './extension-library.jsx';
 import extensionData from '../lib/libraries/extensions/index.jsx';
 import CustomProcedures from './custom-procedures.jsx';
 import errorBoundaryHOC from '../lib/error-boundary-hoc.jsx';
-import { BLOCKS_DEFAULT_SCALE, STAGE_DISPLAY_SIZES } from '../lib/layout-constants';
+import {BLOCKS_DEFAULT_SCALE, STAGE_DISPLAY_SIZES} from '../lib/layout-constants';
 import DropAreaHOC from '../lib/drop-area-hoc.jsx';
 import DragConstants from '../lib/drag-constants';
 import defineDynamicBlock from '../lib/define-dynamic-block';
-import { DEFAULT_THEME, getColorsForTheme, themeMap } from '../lib/themes';
-import { injectExtensionBlockTheme, injectExtensionCategoryTheme } from '../lib/themes/blockHelpers';
+import {DEFAULT_THEME, getColorsForTheme, themeMap} from '../lib/themes';
+import {injectExtensionBlockTheme, injectExtensionCategoryTheme} from '../lib/themes/blockHelpers';
 
-import { connect } from 'react-redux';
-import { updateToolbox } from '../reducers/toolbox';
-import { activateColorPicker } from '../reducers/color-picker';
-import { closeExtensionLibrary, openSoundRecorder, openConnectionModal } from '../reducers/modals';
-import { activateCustomProcedures, deactivateCustomProcedures } from '../reducers/custom-procedures';
-import { setConnectionModalExtensionId } from '../reducers/connection-modal';
-import { updateMetrics } from '../reducers/workspace-metrics';
-import { isTimeTravel2020 } from '../reducers/time-travel';
+import {connect} from 'react-redux';
+import {updateToolbox} from '../reducers/toolbox';
+import {activateColorPicker} from '../reducers/color-picker';
+import {closeExtensionLibrary, openSoundRecorder, openConnectionModal} from '../reducers/modals';
+import {activateCustomProcedures, deactivateCustomProcedures} from '../reducers/custom-procedures';
+import {setConnectionModalExtensionId} from '../reducers/connection-modal';
+import {updateMetrics} from '../reducers/workspace-metrics';
+import {isTimeTravel2020} from '../reducers/time-travel';
 
 const addFunctionListener = (object, property, callback) => {
     const oldFn = object[property];
