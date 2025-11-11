@@ -9,7 +9,6 @@ export default {
     'gui.smalruby3.previewInfo.invitation': '私たちは次世代のスモウルビーを開発中です。お試しください!',
     'gui.smalruby3.previewInfo.welcome': 'スモウルビー3.0 プレビュー版にようこそ!',
     'gui.smalruby3.menuBar.downloadRubyCodeToComputer': 'コンピュータにルビーを保存する',
-    'gui.smalruby3.menuBar.generateRubyFromCode': 'コードからルビーに変換します',
     'gui.smalruby3.unsupportedBrowser.description': '申し訳ありません。スモウルビー3.0はInternet Explorer、Vivaldi、Opera、Silkをサポートしていません。Google Chrome、Mozilla Firefox、Microsoft Edgeのような新しいブラウザの利用をお勧めします。',
     'gui.smalruby3.webglModal.description': '残念ながら、ブラウザーやコンピューターが{webGlLink}ようです。この技術はスモウルビー3.0の実行に必須です。',
     'gui.smalruby3.alerts.convertRubyToBlocksError': 'ルビーからコードに変換できませんでした。ルビーを修正してください！',
@@ -43,8 +42,6 @@ export default {
     'gui.m5stack.description': 'M5stack．モニタ表示',
     'gui.sensor.name': 'センサー',
     'gui.sensor.description': 'センサー用ブロック．SCD30, etc.',
-    'gui.menuBar.uploadToServer': 'マイコンへ書き出し',
-    'gui.menuBar.uploadToServerOld': 'マイコンへ書き出し (旧版)',
     'gui.rboard.name': 'RBoard',
     'gui.rboard.description': 'RBoard (GPIO, PWM, ADC, ...)',
     // MBoard共通

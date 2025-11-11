@@ -9,7 +9,6 @@ export default {
     'gui.smalruby3.previewInfo.invitation': 'わたしたちはじせだいのスモウルビーをかいはつちゅうです。おためしください!',
     'gui.smalruby3.previewInfo.welcome': 'スモウルビー3.0 プレビューばんにようこそ!',
     'gui.smalruby3.menuBar.downloadRubyCodeToComputer': 'コンピュータにルビーをほぞんする',
-    'gui.smalruby3.menuBar.generateRubyFromCode': 'コードからルビーにへんかんします',
     'gui.smalruby3.unsupportedBrowser.description': 'もうしわけありません。スモウルビー3.0はインターネットエクスプローラ、ビヴァルディ、オペラ、シルクをサポートしていません。グーグル クローム、モジラ ファイアーフォックス、マイクロソフト エッジのようなあたらしいブラウザのりようをおすすめします。',
     'gui.smalruby3.webglModal.description': 'ざんねんながら、ブラウザーやコンピューターが{webGlLink}ようです。このぎじゅつはスモウルビー3.0のじっこうにひっすです。',
     'gui.smalruby3.alerts.convertRubyToBlocksError': 'ルビーからコードにへんかんできませんでした。ルビーをなおしてください！',
@@ -43,8 +42,6 @@ export default {
     'gui.m5stack.description': 'M5stack．ひょうじなど',
     'gui.sensor.name': 'センサー',
     'gui.sensor.description': 'センサーようブロック．SCD30, など',
-    'gui.menuBar.uploadToServer': 'マイコンへかく',
-    'gui.menuBar.uploadToServerOld': 'マイコンへかく (きゅうばん)',
     'gui.rboard.name': 'RBoard',
     'gui.rboard.description': 'RBoard (GPIO, PWM, ADC, ...)',
     // MBoard共通
