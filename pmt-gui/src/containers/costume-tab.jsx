@@ -19,11 +19,6 @@ import {
     openBackdropLibrary
 } from '../reducers/modals';
 
-import {
-    activateTab,
-    SOUNDS_TAB_INDEX
-} from '../reducers/editor-tab';
-
 import {setRestore} from '../reducers/restore-deletion';
 import {showStandardAlert, closeAlertWithId} from '../reducers/alerts';
 
@@ -223,7 +218,6 @@ class CostumeTab extends React.Component {
                 name: dropInfo.payload.name
             });
         } else if (dropInfo.dragType === DragConstants.BACKPACK_SOUND) {
-            this.props.onActivateSoundsTab();
             this.props.vm.addSound({
                 md5: dropInfo.payload.body,
                 name: dropInfo.payload.name
@@ -330,7 +324,6 @@ CostumeTab.propTypes = {
     editingTarget: PropTypes.string,
     intl: intlShape,
     isRtl: PropTypes.bool,
-    onActivateSoundsTab: PropTypes.func.isRequired,
     onCloseImporting: PropTypes.func.isRequired,
     onNewLibraryBackdropClick: PropTypes.func.isRequired,
     onNewLibraryCostumeClick: PropTypes.func.isRequired,
@@ -361,7 +354,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    onActivateSoundsTab: () => dispatch(activateTab(SOUNDS_TAB_INDEX)),
     onNewLibraryBackdropClick: e => {
         e.preventDefault();
         dispatch(openBackdropLibrary());
