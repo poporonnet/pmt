@@ -251,7 +251,6 @@ class TargetPane extends React.Component {
             <TargetPaneComponent
                 {...componentProps}
                 fileInputRef={this.setFileInput}
-                onActivateBlocksTab={this.handleActivateBlocksTab}
                 onChangeSpriteDirection={this.handleChangeSpriteDirection}
                 onChangeSpriteName={this.handleChangeSpriteName}
                 onChangeSpriteRotationStyle={this.handleChangeSpriteRotationStyle}
@@ -290,9 +289,7 @@ const mapStateToProps = state => ({
     editingTarget: state.scratchGui.targets.editingTarget,
     hoveredTarget: state.scratchGui.hoveredTarget,
     isRtl: state.locales.isRtl,
-    spriteLibraryVisible: state.scratchGui.modals.spriteLibrary,
     sprites: state.scratchGui.targets.sprites,
-    stage: state.scratchGui.targets.stage,
     raiseSprites: state.scratchGui.blockDrag,
     workspaceMetrics: state.scratchGui.workspaceMetrics
 });
@@ -301,9 +298,6 @@ const mapDispatchToProps = dispatch => ({
     onNewSpriteClick: e => {
         e.preventDefault();
         dispatch(openSpriteLibrary());
-    },
-    onRequestCloseSpriteLibrary: () => {
-        dispatch(closeSpriteLibrary());
     },
     onActivateTab: tabIndex => {
         dispatch(activateTab(tabIndex));
