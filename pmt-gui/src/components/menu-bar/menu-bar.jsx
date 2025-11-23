@@ -26,9 +26,6 @@ import TurboMode from '../../containers/turbo-mode.jsx';
 import MenuBarHOC from '../../containers/menu-bar-hoc.jsx';
 import SettingsMenu from './settings-menu.jsx';
 
-import RubyUploader from '../../containers/ruby-uploader.jsx'; // kani-robo
-import RubyUploaderOld from '../../containers/ruby-uploader-old.jsx'; // kani-robo
-
 import {setPlayer} from '../../reducers/mode';
 import {
     isTimeTravel220022BC,
@@ -156,7 +153,6 @@ class MenuBar extends React.Component {
             'handleClickRemix',
             'handleClickSave',
             'handleClickSaveAsCopy',
-            'handleClickGenerateRubyFromCode',
             'handleClickSeeCommunity',
             'handleClickShare',
             'handleSetMode',
@@ -199,10 +195,6 @@ class MenuBar extends React.Component {
     handleClickSaveAsCopy () {
         this.props.onClickSaveAsCopy();
         this.props.onRequestCloseFile();
-    }
-    handleClickGenerateRubyFromCode () {
-        this.props.updateRubyCodeTargetState(this.props.vm.editingTarget);
-        this.props.onRequestCloseEdit();
     }
     handleClickSeeCommunity (waitForUpdate) {
         if (this.props.shouldSaveBeforeTransition()) {
@@ -377,13 +369,6 @@ class MenuBar extends React.Component {
                 id="gui.menuBar.new"
             />
         );
-        const generateRubyFromCodeMessage = (
-            <FormattedMessage
-                defaultMessage="Generate Ruby from Code"
-                description="Menu bar item for generating ruby from code"
-                id="gui.smalruby3.menuBar.generateRubyFromCode"
-            />
-        );
         const remixButton = (
             <Button
                 className={classNames(
@@ -496,42 +481,6 @@ class MenuBar extends React.Component {
                                             </MenuItem>
                                         )}</SB3Downloader>
                                     </MenuSection>
-                                    <MenuSection>
-                                        <RubyUploader>
-                                            {(
-                                                className, _, uploadProject
-                                            ) => (
-                                                <MenuItem
-                                                    className={className}
-                                                    onClick={this.getSaveRubyToComputerHandler(uploadProject)}
-                                                >
-                                                    <FormattedMessage
-                                                        defaultMessage="Send to MicroComputer"
-                                                        description="Menu bar item for send to MicroComputer"
-                                                        id="gui.menuBar.uploadToServer"
-                                                    />
-                                                </MenuItem>
-                                            )}
-                                        </RubyUploader>
-                                    </MenuSection>
-                                    <MenuSection>
-                                        <RubyUploaderOld>
-                                            {(
-                                                className, _, uploadProject
-                                            ) => (
-                                                <MenuItem
-                                                    className={className}
-                                                    onClick={this.getSaveRubyToComputerHandler(uploadProject)}
-                                                >
-                                                    <FormattedMessage
-                                                        defaultMessage="Send to MicroComputer (old version)"
-                                                        description="Menu bar item for send to MicroComputer"
-                                                        id="gui.menuBar.uploadToServerOld"
-                                                    />
-                                                </MenuItem>
-                                            )}
-                                        </RubyUploaderOld>
-                                    </MenuSection>
                                 </MenuBarMenu>
                             </div>
                         )}
@@ -582,14 +531,6 @@ class MenuBar extends React.Component {
                                             )}
                                         </MenuItem>
                                     )}</TurboMode>
-                                </MenuSection>
-                                <MenuSection>
-                                    <MenuItem
-                                        isRtl={this.props.isRtl}
-                                        onClick={this.handleClickGenerateRubyFromCode}
-                                    >
-                                        {generateRubyFromCodeMessage}
-                                    </MenuItem>
                                 </MenuSection>
                             </MenuBarMenu>
 
@@ -795,7 +736,6 @@ MenuBar.propTypes = {
     settingsMenuOpen: PropTypes.bool,
     shouldSaveBeforeTransition: PropTypes.func,
     showComingSoon: PropTypes.bool,
-    updateRubyCodeTargetState: PropTypes.func,
     vm: PropTypes.instanceOf(VM).isRequired
 };
 

@@ -10,21 +10,6 @@
     "defaultMessage": "Code"
   },
   {
-    "id": "gui.gui.backdropsTab",
-    "description": "Button to get to the backdrops panel",
-    "defaultMessage": "Backdrops"
-  },
-  {
-    "id": "gui.gui.costumesTab",
-    "description": "Button to get to the costumes panel",
-    "defaultMessage": "Costumes"
-  },
-  {
-    "id": "gui.gui.soundsTab",
-    "description": "Button to get to the sounds panel",
-    "defaultMessage": "Sounds"
-  },
-  {
     "id": "gui.smalruby3.gui.rubyTab",
     "description": "Button to get to the Ruby panel",
     "defaultMessage": "Ruby"

@@ -40,11 +40,6 @@
     "defaultMessage": "New"
   },
   {
-    "id": "gui.smalruby3.menuBar.generateRubyFromCode",
-    "description": "Menu bar item for generating ruby from code",
-    "defaultMessage": "Generate Ruby from Code"
-  },
-  {
     "id": "gui.menuBar.file",
     "description": "Text for file dropdown menu",
     "defaultMessage": "File"
@@ -53,16 +48,6 @@
     "id": "gui.menuBar.downloadToComputer",
     "description": "Menu bar item for downloading a project to your computer",
     "defaultMessage": "Save to your computer"
-  },
-  {
-    "id": "gui.menuBar.uploadToServer",
-    "description": "Menu bar item for send to MicroComputer",
-    "defaultMessage": "Send to MicroComputer"
-  },
-  {
-    "id": "gui.menuBar.uploadToServerOld",
-    "description": "Menu bar item for send to MicroComputer",
-    "defaultMessage": "Send to MicroComputer (old version)"
   },
   {
     "id": "gui.menuBar.edit",

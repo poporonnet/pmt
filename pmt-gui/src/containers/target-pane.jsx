@@ -5,8 +5,7 @@ import {connect} from 'react-redux';
 import {intlShape, injectIntl} from 'react-intl';
 
 import {
-    openSpriteLibrary,
-    closeSpriteLibrary
+    openSpriteLibrary
 } from '../reducers/modals';
 import {activateTab, BLOCKS_TAB_INDEX} from '../reducers/editor-tab';
 import {setReceivedBlocks} from '../reducers/hovered-target';
@@ -17,8 +16,6 @@ import TargetPaneComponent from '../components/target-pane/target-pane.jsx';
 import {BLOCKS_DEFAULT_SCALE} from '../lib/layout-constants';
 import spriteLibraryContent from '../lib/libraries/sprites.json';
 import {handleFileUpload, spriteUpload} from '../lib/file-uploader';
-import sharedMessages from '../lib/shared-messages';
-import {emptySprite} from '../lib/empty-assets';
 import {highlightTarget} from '../reducers/targets';
 import {fetchSprite, fetchCode} from '../lib/backpack-api';
 import randomizeSpritePosition from '../lib/randomize-sprite-position';
@@ -114,19 +111,7 @@ class TargetPane extends React.Component {
         this.props.vm.addSprite(JSON.stringify(item))
             .then(this.handleActivateBlocksTab);
     }
-    handlePaintSpriteClick () {
-        const formatMessage = this.props.intl.formatMessage;
-        const emptyItem = emptySprite(
-            formatMessage(sharedMessages.sprite, {index: 1}),
-            formatMessage(sharedMessages.pop),
-            formatMessage(sharedMessages.costume, {index: 1})
-        );
-        this.props.vm.addSprite(JSON.stringify(emptyItem)).then(() => {
-            setTimeout(() => { // Wait for targets update to propagate before tab switching
-                this.props.onActivateTab(COSTUMES_TAB_INDEX);
-            });
-        });
-    }
+    handlePaintSpriteClick () {}
     handleActivateBlocksTab () {
         this.props.onActivateTab(BLOCKS_TAB_INDEX);
     }
