@@ -11,12 +11,12 @@ const initialState = {
 const reducer = function (state, action) {
     if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
-        case ACTIVATE_TAB:
-            return Object.assign({}, state, {
-                activeTabIndex: action.activeTabIndex
-            });
-        default:
-            return state;
+    case ACTIVATE_TAB:
+        return Object.assign({}, state, {
+            activeTabIndex: action.activeTabIndex
+        });
+    default:
+        return state;
     }
 };
 
