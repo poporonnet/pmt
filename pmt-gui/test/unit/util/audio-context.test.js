@@ -1,4 +1,5 @@
 import 'web-audio-test-api';
+jest.mock('startaudiocontext', () => jest.fn());
 import SharedAudioContext from '../../../src/lib/audio/shared-audio-context';
 
 describe('Shared Audio Context', () => {

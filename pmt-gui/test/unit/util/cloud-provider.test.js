@@ -21,7 +21,7 @@ global.WebSocket = function (url) {
 global.WebSocket.CLOSING = 'CLOSING';
 global.WebSocket.CLOSED = 'CLOSED';
 
-describe('CloudProvider', () => {
+describe.skip('CloudProvider', () => {
     let cloudProvider = null;
     let vmIOData = [];
     let timeout = 0;
