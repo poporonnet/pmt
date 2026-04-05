@@ -1,1 +1,3 @@
-describe.skip('detectTutorialId (module removed)', () => {});
+describe.skip('detectTutorialId (module removed)', () => {
+    test.skip('obsolete', () => {});
+});

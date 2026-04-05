@@ -1,1 +1,3 @@
-describe.skip('CloudProvider (module removed)', () => {});
+describe.skip('CloudProvider (module removed)', () => {
+    test.skip('obsolete', () => {});
+});

@@ -1,1 +1,3 @@
-describe.skip('CloudManagerHOC (module removed)', () => {});
+describe.skip('CloudManagerHOC (module removed)', () => {
+    test.skip('obsolete', () => {});
+});
