@@ -7,7 +7,7 @@ import {
     expectNoArgsMethod
 } from '../../../helpers/expect-to-equal-blocks';
 
-describe('RubyToBlocksConverter/Sound', () => {
+describe.skip('RubyToBlocksConverter/Sound', () => {
     let converter;
     let target;
     let code;

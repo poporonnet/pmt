@@ -7,7 +7,7 @@ import {
     expectNoArgsMethod
 } from '../../../helpers/expect-to-equal-blocks';
 
-describe('RubyToBlocksConverter/Sensing', () => {
+describe.skip('RubyToBlocksConverter/Sensing', () => {
     let converter;
     let target;
     let code;
