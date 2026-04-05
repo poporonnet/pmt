@@ -12,6 +12,9 @@ tap.beforeEach(() => {
     const project = readFileToBuffer(projectUri);
     const storage = makeTestStorage();
     const originalLoad = storage.load.bind(storage);
+    // In CI, transient CDN/network failures can occur while loading fixture assets.
+    // For this test we only validate PROJECT_CHANGED emission behavior, so falling
+    // back to null assets is acceptable and keeps the test deterministic.
     storage.load = (...args) => originalLoad(...args).catch(() => null);
 
     vm = new VirtualMachine();
