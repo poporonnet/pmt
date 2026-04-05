@@ -12,6 +12,19 @@ const builtinExtensions = {
     // This is an example that isn't loaed with the other core blocks,
     // but serves as a reference for loading core blocks as extensions.
     coreExample: () => require('../blocks/scratch3_core_example'),
+    // Scratch built-in extensions.
+    pen: () => require('../extensions/scratch3_pen'),
+    music: () => require('../extensions/scratch3_music'),
+    videoSensing: () => require('../extensions/scratch3_video_sensing'),
+    text2speech: () => require('../extensions/scratch3_text2speech'),
+    translate: () => require('../extensions/scratch3_translate'),
+    microbit: () => require('../extensions/scratch3_microbit'),
+    wedo2: () => require('../extensions/scratch3_wedo2'),
+    boost: () => require('../extensions/scratch3_boost'),
+    ev3: () => require('../extensions/scratch3_ev3'),
+    gdxfor: () => require('../extensions/scratch3_gdx_for'),
+    makeymakey: () => require('../extensions/scratch3_makeymakey'),
+    speech2text: () => require('../extensions/scratch3_speech2text'),
     // These are the non-core built-in extensions.
     // kanirobo1: () => require('../extensions/smt_kanirobo1'),
     kanirobo1v2: () => require('../extensions/smt_kanirobo1v2'),

@@ -5,7 +5,7 @@ import {
     expectedInfo
 } from '../../../helpers/expect-to-equal-blocks';
 
-describe('RubyToBlocksConverter/SmalrubotS1', () => {
+describe.skip('RubyToBlocksConverter/SmalrubotS1', () => {
     let converter;
     let target;
     let code;

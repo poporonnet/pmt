@@ -61,7 +61,10 @@ test('sb3-roundtrip', t => {
 
         t.strictEqual(sprite.sounds.length, 1);
         const [meow] = sprite.sounds;
-        t.strictEqual(meow.md5, '83c36d806dc92327b9e7049a565c6bff.wav');
+        t.strictEqual(meow.assetId, 'b586745b98e94d7574f7f7b48d831e20');
+        t.strictEqual(meow.dataFormat, 'wav');
+        t.ok(meow.broken);
+        t.strictEqual(meow.broken.assetId, '83c36d806dc92327b9e7049a565c6bff');
     };
 
     const loadThings = Promise.all([

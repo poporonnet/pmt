@@ -89,6 +89,7 @@ const loadSound = function (sound, runtime, soundBank) {
     const idParts = StringUtil.splitFirst(sound.md5, '.');
     const md5 = idParts[0];
     const ext = idParts[1].toLowerCase();
+    sound.assetId = sound.assetId || md5;
     sound.dataFormat = ext;
     return (
         (sound.asset && Promise.resolve(sound.asset)) ||

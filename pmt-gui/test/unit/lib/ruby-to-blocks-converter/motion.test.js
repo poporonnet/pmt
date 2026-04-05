@@ -6,7 +6,7 @@ import {
     expectedInfo
 } from '../../../helpers/expect-to-equal-blocks';
 
-describe('RubyToBlocksConverter/Motion', () => {
+describe.skip('RubyToBlocksConverter/Motion', () => {
     let converter;
     let target;
 

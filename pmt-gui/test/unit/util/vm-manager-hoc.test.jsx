@@ -8,6 +8,8 @@ import {LoadingState} from '../../../src/reducers/project-state';
 
 import vmManagerHOC from '../../../src/lib/vm-manager-hoc.jsx';
 
+jest.mock('scratch-audio', () => jest.fn(() => ({})));
+
 describe('VMManagerHOC', () => {
     const mockStore = configureStore();
     let store;

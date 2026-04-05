@@ -169,6 +169,9 @@
         "workbox-webpack-plugin": "^6.1.5",
         "yauzl": "2.10.0"
     },
+    "overrides": {
+        "cheerio": "1.0.0-rc.12"
+    },
     "jest": {
         "setupFiles": [
             "raf/polyfill",
@@ -178,6 +181,16 @@
         "testPathIgnorePatterns": [
             "src/test.js"
         ],
+        "moduleFileExtensions": [
+            "js",
+            "jsx",
+            "ts",
+            "tsx",
+            "json"
+        ],
+        "transform": {
+            "^.+\\.(js|jsx|ts|tsx)$": "babel-jest"
+        },
         "moduleNameMapper": {
             "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
             "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.js",

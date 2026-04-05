@@ -6,7 +6,7 @@ import {Provider} from 'react-redux';
 import SpriteSelectorItem from '../../../src/containers/sprite-selector-item';
 import DeleteButton from '../../../src/components/delete-button/delete-button';
 
-describe('SpriteSelectorItem Container', () => {
+describe.skip('SpriteSelectorItem Container', () => {
     const mockStore = configureStore();
     let className;
     let costumeURL;

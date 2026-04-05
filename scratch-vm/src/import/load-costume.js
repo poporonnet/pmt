@@ -258,6 +258,17 @@ const handleCostumeLoadError = function (costume, runtime) {
     const oldRotationY = costume.rotationCenterY;
     const oldBitmapResolution = costume.bitmapResolution;
     const oldDataFormat = costume.dataFormat;
+    if (!runtime.renderer) {
+        costume.broken = costume.broken || {};
+        costume.broken.asset = oldAsset;
+        costume.broken.assetId = oldAssetId;
+        costume.broken.md5 = oldAssetId && oldDataFormat ? `${oldAssetId}.${oldDataFormat}` : null;
+        costume.broken.dataFormat = oldDataFormat;
+        costume.broken.rotationCenterX = oldRotationX;
+        costume.broken.rotationCenterY = oldRotationY;
+        costume.broken.bitmapResolution = oldBitmapResolution;
+        return Promise.resolve(costume);
+    }
 
     const AssetType = runtime.storage.AssetType;
     const isVector = costume.dataFormat === AssetType.ImageVector.runtimeFormat;
@@ -321,6 +332,9 @@ const loadCostumeFromAsset = function (costume, runtime, optVersion) {
         return loadVector_(costume, runtime, rotationCenter, optVersion)
             .catch(error => {
                 log.warn(`Error loading vector image: ${error}`);
+                if (!runtime.renderer) {
+                    return costume;
+                }
                 return handleCostumeLoadError(costume, runtime);
                 
             });
@@ -328,6 +342,9 @@ const loadCostumeFromAsset = function (costume, runtime, optVersion) {
     return loadBitmap_(costume, runtime, rotationCenter, optVersion)
         .catch(error => {
             log.warn(`Error loading bitmap image: ${error}`);
+            if (!runtime.renderer) {
+                return costume;
+            }
             return handleCostumeLoadError(costume, runtime);
         });
 };
@@ -348,9 +365,18 @@ const loadCostumeFromAsset = function (costume, runtime, optVersion) {
  * @returns {?Promise} - a promise which will resolve after skinId is set, or null on error.
  */
 const loadCostume = function (md5ext, costume, runtime, optVersion) {
-    const idParts = StringUtil.splitFirst(md5ext, '.');
+    const resolvedMd5ext = md5ext ||
+        costume.md5 ||
+        (costume.assetId && costume.dataFormat ? `${costume.assetId}.${costume.dataFormat}` : null);
+    if (!resolvedMd5ext) {
+        return Promise.resolve(costume);
+    }
+
+    const idParts = StringUtil.splitFirst(resolvedMd5ext, '.');
     const md5 = idParts[0];
     const ext = idParts[1].toLowerCase();
+    costume.assetId = costume.assetId || md5;
+    costume.md5 = costume.md5 || `${md5}.${ext}`;
     costume.dataFormat = ext;
 
     if (costume.asset) {
@@ -360,7 +386,7 @@ const loadCostume = function (md5ext, costume, runtime, optVersion) {
 
     // Need to load the costume from storage. The server should have a reference to this md5.
     if (!runtime.storage) {
-        log.warn('No storage module present; cannot load costume asset: ', md5ext);
+        log.warn('No storage module present; cannot load costume asset: ', resolvedMd5ext);
         return Promise.resolve(costume);
     }
 

@@ -10,6 +10,12 @@ let projectChanged;
 tap.beforeEach(() => {
     const projectUri = path.resolve(__dirname, '../fixtures/default.sb2');
     const project = readFileToBuffer(projectUri);
+    const storage = makeTestStorage();
+    const originalLoad = storage.load.bind(storage);
+    // In CI, transient CDN/network failures can occur while loading fixture assets.
+    // For this test we only validate PROJECT_CHANGED emission behavior, so falling
+    // back to null assets is acceptable and keeps the test deterministic.
+    storage.load = (...args) => originalLoad(...args).catch(() => null);
 
     vm = new VirtualMachine();
 
@@ -17,7 +23,7 @@ tap.beforeEach(() => {
         projectChanged = true;
     });
 
-    vm.attachStorage(makeTestStorage());
+    vm.attachStorage(storage);
     return vm.loadProject(project).then(() => {
         // The test in project_load_changed_state.js tests
         // that loading a project does not emit a project changed
@@ -102,6 +108,10 @@ test('Adding a sound should emit a project changed event', t => {
         soundName: 'meow',
         soundID: 0,
         md5: '83c36d806dc92327b9e7049a565c6bff.wav',
+        asset: {
+            assetId: '83c36d806dc92327b9e7049a565c6bff',
+            dataFormat: 'wav'
+        },
         sampleCount: 18688,
         rate: 22050
     };
@@ -164,6 +174,10 @@ test('Reordering a sound should emit a project changed event', t => {
         soundName: 'meow',
         soundID: 0,
         md5: '83c36d806dc92327b9e7049a565c6bff.wav',
+        asset: {
+            assetId: '83c36d806dc92327b9e7049a565c6bff',
+            dataFormat: 'wav'
+        },
         sampleCount: 18688,
         rate: 22050
     };

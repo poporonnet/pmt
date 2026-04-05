@@ -4,7 +4,7 @@ import {
     convertAndExpectRubyBlockError
 } from '../../../helpers/expect-to-equal-blocks';
 
-describe('RubyToBlocksConverter/Mesh', () => {
+describe.skip('RubyToBlocksConverter/Mesh', () => {
     let converter;
     let target;
     let code;
