@@ -36,9 +36,9 @@ jobs:
         working-directory: scratch-vm
         run: npm run lint
 
-      - name: Test scratch-vm
+      - name: Test scratch-vm unit
         working-directory: scratch-vm
-        run: npm run tap
+        run: npm run tap:unit
 
       - name: Link scratch-vm
         working-directory: scratch-vm
