@@ -36,6 +36,10 @@ jobs:
         working-directory: scratch-vm
         run: npm run lint
 
+      - name: Test scratch-vm
+        working-directory: scratch-vm
+        run: npm run tap
+
       - name: Link scratch-vm
         working-directory: scratch-vm
         run: npm link
@@ -47,6 +51,10 @@ jobs:
       - name: Lint pmt-gui
         working-directory: pmt-gui
         run: npm run test:lint
+
+      - name: Test pmt-gui unit
+        working-directory: pmt-gui
+        run: npm run test:unit -- --runInBand --verbose=false
 
       - name: Link scratch-vm into pmt-gui
         working-directory: pmt-gui
